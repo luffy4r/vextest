@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
-<title>Pocket Sudoku Booklet | كتيب سودوكو 🧩</title>
+<title>Sudoku Pocket Book | كتيب السودوكو 🧩</title>
 <link rel="icon" href="https://ik.imagekit.io/vexaccess/cropped_circle_image.png?updatedAt=1793621896222">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,13 +112,13 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 <main class="flex-grow py-0 md:py-10 px-0 md:px-4">
   <div class="max-w-4xl mx-auto bg-white md:rounded-2xl md:shadow-sm md:border border-gray-100 overflow-hidden flex flex-col md:flex-row">
     <div class="fx-up md:w-1/2 bg-gray-50 flex items-center justify-center p-0 md:p-6" style="--d:.15s">
-      <img id="main-img" src="https://ik.imagekit.io/vexaccess/IMG_7243.jpg" alt="Pocket Sudoku Booklet" fetchpriority="high" class="w-full h-auto object-cover aspect-[4/5] md:rounded-xl md:shadow-md">
+      <img id="main-img" src="https://ik.imagekit.io/vexaccess/IMG_7243.jpg" alt="Sudoku Pocket Book" fetchpriority="high" class="w-full h-auto object-cover aspect-[4/5] md:rounded-xl md:shadow-md">
     </div>
     <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
-      <h1 id="title" class="text-3xl md:text-4xl font-bold text-eva-burgundy mb-2">Pocket Sudoku Booklet</h1>
-      <p class="fx-up text-lg text-gray-500 mb-4" dir="rtl" style="--d:.45s">كتيب سودوكو صغير للجيب 🧩</p>
+      <h1 id="title" class="text-3xl md:text-4xl font-bold text-eva-burgundy mb-2">Sudoku Pocket Book</h1>
+      <p class="fx-up text-lg text-gray-500 mb-4" dir="rtl" style="--d:.45s">كتيب السودوكو بحجم صغير 🧩</p>
       <p id="price" class="fx-up text-2xl font-semibold text-gray-900 mb-6" style="--d:.6s">1200 DA</p>
-      <p class="fx-up text-gray-600 mb-8 leading-relaxed" style="--d:.75s">Train your brain every day with our pocket-size Sudoku booklet. Ideal for boosting focus and memory.<span dir="rtl" class="block mt-2 text-gray-500">درّب عقلك يوميًا مع كتيب السودوكو بحجم الجيب. مثالي لتعزيز التركيز والذاكرة.</span></p>
+      <p class="fx-up text-gray-600 mb-8 leading-relaxed" style="--d:.75s">Train your brain every day with our Sudoku Pocket Book. Ideal for boosting focus and memory.<span dir="rtl" class="block mt-2 text-gray-500">درّب عقلك يوميًا مع كتيب السودوكو بحجم صغير. مثالي لتعزيز التركيز والذاكرة.</span></p>
       <div class="fx-up mb-6" style="--d:.9s">
         <label class="block text-sm font-medium text-gray-700 mb-2">Quantity • الكمية</label>
         <div class="inline-flex items-center border-2 border-gray-200 rounded-lg overflow-hidden">
@@ -179,7 +179,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <ul id="cart-items" class="mb-8 space-y-3"></ul>
 
     <form id="checkout-form" novalidate onsubmit="submitOrder(event)" class="space-y-4">
-      <div class="flex items-center gap-2 mb-3 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>INFORMATION • معلوماتك</div>
+      <div class="flex items-center gap-2 mb-3 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>INFORMATIONS • معلوماتك</div>
       <div class="grid grid-cols-2 gap-3">
         <input type="text" id="nom" placeholder="Last name • اللقب" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400">
         <input type="text" id="prenom" placeholder="First name • الاسم" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400">
@@ -191,25 +191,25 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
       <div class="flex items-center gap-2 mb-3 mt-6 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>DESTINATION • الوجهة</div>
       <div class="space-y-3">
         <select id="wilaya" onchange="loadCommunes()" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Wilaya • الولاية</option></select>
-        <select id="commune" onchange="onCommuneChange()" disabled class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Commune • البلدية</option></select>
+        <select id="commune" onchange="onCommuneChange()" disabled class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Municipality • البلدية</option></select>
       </div>
       <div class="flex items-center gap-2 mb-3 mt-6 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>DELIVERY • التوصيل</div>
       <div class="space-y-3">
         <label class="delivery-option flex items-start gap-4 p-4 border border-gray-200 rounded-xl bg-gray-50" id="label-stopdesk">
           <input type="radio" name="delivery_type" value="stopdesk" onchange="selectDelivery('stopdesk')" class="mt-1">
           <div class="flex-1">
-            <span class="font-bold text-gray-900 text-sm">Stopdesk office • مكتب</span>
+            <span class="font-bold text-gray-900 text-sm">Stopdesk • مكتب</span>
             <div id="stopdesk-container" class="hidden mt-3">
-              <div id="stopdesk-list" class="space-y-2 max-h-56 overflow-y-auto pr-1"><div class="text-sm text-gray-500 p-2 text-center">Please select a commune • اختر البلدية</div></div>
+              <div id="stopdesk-list" class="space-y-2 max-h-56 overflow-y-auto pr-1"><div class="text-sm text-gray-500 p-2 text-center">Please select a municipality • اختر البلدية</div></div>
               <input type="hidden" id="stopdesk_val">
             </div>
-            <p id="stopdesk-hint" class="text-xs text-gray-500 mt-1">Please select a commune • اختر البلدية</p>
+            <p id="stopdesk-hint" class="text-xs text-gray-500 mt-1">Please select a municipality • اختر البلدية</p>
           </div>
         </label>
         <label class="delivery-option flex items-start gap-4 p-4 border border-gray-200 rounded-xl bg-gray-50" id="label-domicile">
           <input type="radio" name="delivery_type" value="express" onchange="selectDelivery('express')" class="mt-1">
           <div class="flex-1">
-            <span class="font-bold text-gray-900 text-sm">Home delivery • للمنزل</span>
+            <div class="flex justify-between items-center"><span class="font-bold text-gray-900 text-sm">Home delivery • للمنزل</span><span id="home-price" class="font-bold text-sm"></span></div>
             <p class="text-xs text-gray-500 mt-1">Delivered to your door</p>
             <div id="domicile-container" class="hidden mt-3">
               <input type="text" id="adresse_domicile" placeholder="Your exact address (e.g. Didouche Mourad St.) • عنوانك الكامل" class="w-full p-3 text-sm bg-white border border-gray-200 rounded-xl outline-none placeholder-gray-400">
@@ -232,7 +232,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 
 <script>
 const API_BASE_URL='https://vexback.onrender.com/api';
-const P={name:'Pocket Sudoku Booklet',price:1200,img:'https://ik.imagekit.io/vexaccess/IMG_7243.jpg'};
+const P={name:'Sudoku Pocket Book',price:1200,img:'https://ik.imagekit.io/vexaccess/IMG_7243.jpg'};
 /* TES LIENS : remplis seulement ce qui est entre guillemets (un lien vide est masqué) */
 const LINKS={instagram:"https://www.instagram.com/vex.accessoires",tiktok:"https://www.tiktok.com/@vex.essentials",developpeur:"https://www.instagram.com/luffydz.dev"};
 const WILAYAS=["Adrar","Chlef","Laghouat","Oum El Bouaghi","Batna","Béjaïa","Biskra","Béchar","Blida","Bouira","Tamanrasset","Tébessa","Tlemcen","Tiaret","Tizi Ouzou","Alger","Djelfa","Jijel","Sétif","Saïda","Skikda","Sidi Bel Abbès","Annaba","Guelma","Constantine","Médéa","Mostaganem","M'Sila","Mascara","Ouargla","Oran","El Bayadh","Illizi","Bordj Bou Arreridj","Boumerdès","El Tarf","Tindouf","Tissemsilt","El Oued","Khenchela","Souk Ahras","Tipaza","Mila","Aïn Defla","Naâma","Aïn Témouchent","Ghardaïa","Relizane","Timimoun","Bordj Badji Mokhtar","Ouled Djellal","Béni Abbès","In Salah","In Guezzam","Touggourt","Djanet","El M'Ghair","El Meniaa"];
@@ -258,7 +258,7 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const retrig=(el,c)=>{el.classList.remove(c);void el.offsetWidth;el.classList.add(c)};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const phone=()=>$('#telephone').value.replace(/\s/g,'');
-let cart=[],currentQty=1,cachedPricing=[];
+let cart=[],currentQty=1,cachedPricing=[],homePrice=null;
 try{cart=JSON.parse(localStorage.getItem('vex_cart'))||[]}catch(e){}
 const save=()=>{try{localStorage.setItem('vex_cart',JSON.stringify(cart))}catch(e){}};
 
@@ -319,15 +319,14 @@ function buyNow(){
 function shipFee(){
   const t=($('input[name="delivery_type"]:checked')||{}).value;
   if(t==='stopdesk'){const v=$('#stopdesk_val').value;return v?(Number(JSON.parse(v).price)||0):null}
-  if(t==='express'){
-    for(const o of cachedPricing)for(const k in o)if(/home|domicile|express|door/i.test(k)&&Number(o[k])>=100)return Number(o[k]);
-  }
+  if(t==='express')return homePrice;
   return null;
 }
 function updateSummary(){
   const sub=cart.reduce((s,i)=>s+P.price*i.qty,0),f=shipFee(),t=($('input[name="delivery_type"]:checked')||{}).value;
   const set=(sel,txt)=>{const el=$(sel);if(el.textContent!==txt){el.textContent=txt;retrig(el,'pop')}};
   set('#sum-sub',sub+' DA');
+  $('#home-price').textContent=homePrice!==null?homePrice+' DA':'';
   set('#sum-ship',f!==null?f+' DA':!t?'Choose delivery • اختر التوصيل':t==='stopdesk'?'Choose an office • اختر مكتبا':'Confirmed by phone • تأكيد هاتفي');
   set('#cart-total',(sub+(f||0))+' DA');
 }
@@ -346,8 +345,8 @@ function resetCheckout(){
   $('#checkout-form').classList.remove('hidden');$('#cart-items').classList.remove('hidden');$('#fp').classList.remove('hidden');
   $$('.delivery-option').forEach(l=>l.classList.remove('selected'));
   $('#stopdesk-container').classList.add('hidden');$('#domicile-container').classList.add('hidden');$('#stopdesk-hint').classList.remove('hidden');
-  $('#commune').innerHTML='<option value="" disabled selected>Commune • البلدية</option>';$('#commune').disabled=true;
-  $('#stopdesk_val').value='';cachedPricing=[];
+  $('#commune').innerHTML='<option value="" disabled selected>Municipality • البلدية</option>';$('#commune').disabled=true;
+  $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;
   $('#telephone').classList.remove('is-valid','is-invalid');updateProgress();updateSummary();
 }
 function closeModal(){
@@ -403,11 +402,11 @@ WILAYAS.forEach((n,i)=>$('#wilaya').add(new Option((i+1)+' - '+n,i+1)));
 function loadCommunes(){
   const id=$('#wilaya').value,cs=$('#commune');
   cs.innerHTML='<option value="" disabled selected>Connecting to server...</option>';cs.disabled=true;
-  $('#stopdesk_val').value='';cachedPricing=[];
-  $('#stopdesk-list').innerHTML='<div class="text-sm text-gray-500 p-2 text-center">Please select a commune • اختر البلدية</div>';
-  $('#stopdesk-hint').textContent='Please select a commune • اختر البلدية';
+  $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;
+  $('#stopdesk-list').innerHTML='<div class="text-sm text-gray-500 p-2 text-center">Please select a municipality • اختر البلدية</div>';
+  $('#stopdesk-hint').textContent='Please select a municipality • اختر البلدية';
   fetch(API_BASE_URL+'/communes/'+id).then(r=>r.json()).then(d=>{
-    cs.innerHTML='<option value="" disabled selected>Commune • البلدية</option>';
+    cs.innerHTML='<option value="" disabled selected>Municipality • البلدية</option>';
     (d.data||d).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name||c.nom;cs.appendChild(o)});
     cs.disabled=false;retrig(cs,'pop');
   }).catch(()=>{cs.innerHTML='<option value="" disabled selected>Loading error</option>';cs.disabled=false});
@@ -416,6 +415,7 @@ function onCommuneChange(){
   const id=$('#commune').value;if(!id)return;
   $('#stopdesk-list').innerHTML='<div class="text-sm text-gray-500 p-3 text-center">Searching offices and rates...</div>';
   $('#stopdesk-hint').textContent='Searching...';
+  fetch(API_BASE_URL+'/home-price/'+id).then(r=>r.json()).then(d=>{if($('#commune').value!==id)return;homePrice=d.success?Number(d.price):null;updateSummary()}).catch(()=>{});
   fetch(API_BASE_URL+'/delivery-prices/'+id).then(r=>r.json()).then(d=>{cachedPricing=d.data||d;populateStopdesks();updateSummary()})
   .catch(()=>{$('#stopdesk-list').innerHTML='<div class="text-sm text-red-500 p-3 text-center">Loading error</div>';$('#stopdesk-hint').textContent='Network error'});
 }
@@ -430,7 +430,7 @@ function populateStopdesks(){
   const box=$('#stopdesk-list'),hint=$('#stopdesk-hint'),cid=String($('#commune').value);
   $('#stopdesk_val').value='';box.innerHTML='';
   const opts=cachedPricing.filter(o=>String(o.commune_id||(o.office&&o.office.commune_id))===cid);
-  if(!opts.length){box.innerHTML='<div class="text-sm text-gray-500 p-4 text-center bg-white rounded-xl border border-dashed border-gray-300">No pickup point in this commune.<br><span class="text-[11px] mt-1 block">Please choose home delivery.</span></div>';hint.textContent='0 pickup points available';return}
+  if(!opts.length){box.innerHTML='<div class="text-sm text-gray-500 p-4 text-center bg-white rounded-xl border border-dashed border-gray-300">No pickup point in this municipality.<br><span class="text-[11px] mt-1 block">Please choose home delivery.</span></div>';hint.textContent='0 pickup points available';return}
   hint.textContent=opts.length+' pickup point(s) available';
   opts.forEach((o,i)=>{
     const id=o.office_id||(o.office&&o.office.id)||o.id,price=o.price||o.delivery_fee||o.delivery_price||o.cost||0,raw=JSON.stringify(o).toLowerCase();
@@ -507,4 +507,4 @@ $$('.stagger-item').forEach(i=>io.observe(i));
 updateCartUI();
 </script>
 </body>
-</html>
+</html> 
