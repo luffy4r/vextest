@@ -421,7 +421,7 @@ function onCommuneChange(){
   fetch(API_BASE_URL+'/home-price/'+id).then(async r=>{let d=null;try{d=await r.json()}catch(e){}return {s:r.status,d}}).then(({s,d})=>{
     if($('#commune').value!==id)return;
     if(d&&d.success){homePrice=Number(d.price);homeStatus=''}
-    else{homePrice=null;homeStatus=!d&&s===404?'Server not updated (404)':d&&d.error==='no home option'?'No home delivery here':'Error '+((d&&d.status)||s)}
+    else{homePrice=null;homeStatus=!d&&s===404?'Server not updated (404)':d&&d.error==='no home option'?('No home option: '+((d.options&&d.options.length?d.options.join(' | '):d.sample)||'empty reply')).slice(0,110):'Error '+((d&&d.status)||s)}
     updateSummary();
   }).catch(()=>{if($('#commune').value===id){homeStatus='Network error';updateSummary()}});
   fetch(API_BASE_URL+'/delivery-prices/'+id).then(r=>r.json()).then(d=>{cachedPricing=d.data||d;populateStopdesks();updateSummary()})
