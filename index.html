@@ -258,7 +258,7 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const retrig=(el,c)=>{el.classList.remove(c);void el.offsetWidth;el.classList.add(c)};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const phone=()=>$('#telephone').value.replace(/\s/g,'');
-let cart=[],currentQty=1,cachedPricing=[],homePrice=null;
+let cart=[],currentQty=1,cachedPricing=[],homePrice=null,homeStatus='';
 try{cart=JSON.parse(localStorage.getItem('vex_cart'))||[]}catch(e){}
 const save=()=>{try{localStorage.setItem('vex_cart',JSON.stringify(cart))}catch(e){}};
 /* un seul produit : on regroupe les anciennes lignes du panier */
@@ -329,7 +329,7 @@ function updateSummary(){
   const set=(sel,txt)=>{const el=$(sel);if(el.textContent!==txt){el.textContent=txt;retrig(el,'pop')}};
   set('#sum-sub',sub+' DA');
   $('#home-price').textContent=homePrice!==null?homePrice+' DA':'';
-  set('#sum-ship',f!==null?f+' DA':!t?'Choose delivery • اختر التوصيل':t==='stopdesk'?'Choose an office • اختر مكتبا':'Confirmed by phone • تأكيد هاتفي');
+  set('#sum-ship',f!==null?f+' DA':!t?'Choose delivery • اختر التوصيل':t==='stopdesk'?'Choose an office • اختر مكتبا':homeStatus==='loading'?'Calculating... • جارٍ الحساب':homeStatus||'Confirmed by phone • تأكيد هاتفي');
   set('#cart-total',(sub+(f||0))+' DA');
 }
 
@@ -348,7 +348,7 @@ function resetCheckout(){
   $$('.delivery-option').forEach(l=>l.classList.remove('selected'));
   $('#stopdesk-container').classList.add('hidden');$('#domicile-container').classList.add('hidden');$('#stopdesk-hint').classList.remove('hidden');
   $('#commune').innerHTML='<option value="" disabled selected>Municipality • البلدية</option>';$('#commune').disabled=true;
-  $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;
+  $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;homeStatus='';
   $('#telephone').classList.remove('is-valid','is-invalid');updateProgress();updateSummary();
 }
 function closeModal(){
@@ -404,7 +404,7 @@ WILAYAS.forEach((n,i)=>$('#wilaya').add(new Option((i+1)+' - '+n,i+1)));
 function loadCommunes(){
   const id=$('#wilaya').value,cs=$('#commune');
   cs.innerHTML='<option value="" disabled selected>Connecting to server...</option>';cs.disabled=true;
-  $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;
+  $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;homeStatus='';
   $('#stopdesk-list').innerHTML='<div class="text-sm text-gray-500 p-2 text-center">Please select a municipality • اختر البلدية</div>';
   $('#stopdesk-hint').textContent='Please select a municipality • اختر البلدية';
   fetch(API_BASE_URL+'/communes/'+id).then(r=>r.json()).then(d=>{
@@ -417,7 +417,13 @@ function onCommuneChange(){
   const id=$('#commune').value;if(!id)return;
   $('#stopdesk-list').innerHTML='<div class="text-sm text-gray-500 p-3 text-center">Searching offices and rates...</div>';
   $('#stopdesk-hint').textContent='Searching...';
-  fetch(API_BASE_URL+'/home-price/'+id).then(r=>r.json()).then(d=>{if($('#commune').value!==id)return;homePrice=d.success?Number(d.price):null;updateSummary()}).catch(()=>{});
+  homeStatus='loading';updateSummary();
+  fetch(API_BASE_URL+'/home-price/'+id).then(async r=>{let d=null;try{d=await r.json()}catch(e){}return {s:r.status,d}}).then(({s,d})=>{
+    if($('#commune').value!==id)return;
+    if(d&&d.success){homePrice=Number(d.price);homeStatus=''}
+    else{homePrice=null;homeStatus=!d&&s===404?'Server not updated (404)':d&&d.error==='no home option'?'No home delivery here':'Error '+((d&&d.status)||s)}
+    updateSummary();
+  }).catch(()=>{if($('#commune').value===id){homeStatus='Network error';updateSummary()}});
   fetch(API_BASE_URL+'/delivery-prices/'+id).then(r=>r.json()).then(d=>{cachedPricing=d.data||d;populateStopdesks();updateSummary()})
   .catch(()=>{$('#stopdesk-list').innerHTML='<div class="text-sm text-red-500 p-3 text-center">Loading error</div>';$('#stopdesk-hint').textContent='Network error'});
 }
