@@ -261,6 +261,8 @@ const phone=()=>$('#telephone').value.replace(/\s/g,'');
 let cart=[],currentQty=1,cachedPricing=[],homePrice=null;
 try{cart=JSON.parse(localStorage.getItem('vex_cart'))||[]}catch(e){}
 const save=()=>{try{localStorage.setItem('vex_cart',JSON.stringify(cart))}catch(e){}};
+/* un seul produit : on regroupe les anciennes lignes du panier */
+if(cart.length){const q=cart.reduce((s,i)=>s+(parseInt(i.qty)||0),0);cart=q>0?[{name:P.name,price:P.price,qty:q,img:P.img}]:[];save()}
 
 /* ---------- Toast ---------- */
 function showToast(msg,type='success'){
@@ -306,7 +308,7 @@ function flyToCart(from){
   f.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+dx*.4+'px,'+(dy*.4-80)+'px) scale(.8)',opacity:1,offset:.4},{transform:'translate('+dx+'px,'+dy+'px) scale(.2)',opacity:.5}],{duration:850,easing:'ease-in-out'}).onfinish=()=>f.remove();
 }
 function addToCart(btn){
-  const ex=cart.find(i=>i.name===P.name);
+  const ex=cart[0];
   if(ex)ex.qty+=currentQty;else cart.push({name:P.name,price:P.price,qty:currentQty,img:P.img});
   save();updateCartUI();showToast('Added to cart! • تمت الإضافة إلى السلة');flyToCart(btn);
 }
@@ -507,4 +509,4 @@ $$('.stagger-item').forEach(i=>io.observe(i));
 updateCartUI();
 </script>
 </body>
-</html> 
+</html>
