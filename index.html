@@ -88,6 +88,8 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .fx-menu-link{display:flex;align-items:center;gap:14px;padding:12px;margin-bottom:6px;border-radius:16px;font-weight:600;color:#392E2C;transition:background-color .2s,transform .2s}
 .fx-menu-link:active{background:#f3f4f6;transform:scale(.98)}
 .fx-ico{flex:none;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.fx-ico-logo{background:#fff;border:1px solid #e5e7eb;overflow:hidden}
+.fx-ico-logo img{width:100%;height:100%;object-fit:contain;padding:6px}
 .fx-menu.is-open .fx-menu-link,.fx-menu.is-open .fx-credit{animation:up .55s cubic-bezier(.16,1,.3,1) calc(var(--i,0)*80ms + 180ms) both}
 .fx-credit{margin-top:auto;padding-top:20px;border-top:2px dashed #e5e7eb;text-align:center;font-size:13px;color:#9ca3af}
 .fx-credit a,.fx-footer a{color:#171717;font-weight:700;text-decoration:underline;text-underline-offset:3px}
@@ -129,6 +131,17 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .peer:checked ~ div .ck8{background:#171717;border-color:#171717;animation:pop .4s}
 .peer:checked ~ div .ck8 svg{animation:draw .35s .1s forwards}
 .petals span.dg{font:700 var(--s) Poppins,sans-serif;opacity:.12}
+/* coche animée dans les champs remplis */
+@keyframes tkring{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}100%{box-shadow:0 0 0 9px rgba(34,197,94,0)}}
+.fld{position:relative}
+.fld>input,.fld>select{padding-right:2.6rem}
+.fld.sel>select{padding-right:4.2rem}
+.tk{position:absolute;top:50%;right:11px;width:22px;height:22px;margin-top:-11px;border-radius:9999px;background:#22c55e;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0) rotate(-90deg);pointer-events:none;transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .2s}
+.fld.sel .tk{right:40px}
+.tk svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
+.fld.ok .tk{opacity:1;transform:none;animation:tkring .7s ease-out .1s}
+.fld.ok .tk svg{animation:draw .35s cubic-bezier(.65,0,.45,1) .18s forwards}
+.fld.ok>input,.fld.ok>select{border-color:#86efac}
 </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen flex flex-col font-sans">
@@ -189,7 +202,8 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     </div>
     <a class="fx-menu-link" style="--i:0" data-link="instagram" target="_blank" rel="noopener noreferrer"><span class="fx-ico" style="background:linear-gradient(45deg,#f9a825,#e1306c 55%,#833ab4)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="#fff" stroke="none"/></svg></span>Our Instagram • إنستغرام</a>
     <a class="fx-menu-link" style="--i:1" data-link="tiktok" target="_blank" rel="noopener noreferrer"><span class="fx-ico" style="background:#111"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.2a3.7 3.7 0 1 1-3.7-3.7"/><path d="M14 4c.3 2.4 1.9 3.9 4.2 4.1"/></svg></span>Our TikTok • تيك توك</a>
-    <div class="fx-credit" style="--i:2">Website developed by <a data-link="developpeur" target="_blank" rel="noopener noreferrer">LuffyDZ</a></div>
+    <a class="fx-menu-link" style="--i:2" data-link="suivi" target="_blank" rel="noopener noreferrer"><span class="fx-ico fx-ico-logo"><img src="https://ik.imagekit.io/vexaccess/Zimou" alt="" onerror="this.replaceWith('🚚')"></span>Track my order • تتبع طلبي</a>
+    <div class="fx-credit" style="--i:3">Website developed by <a data-link="developpeur" target="_blank" rel="noopener noreferrer">LuffyDZ</a></div>
   </nav>
 </div>
 
@@ -219,17 +233,17 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <form id="checkout-form" novalidate onsubmit="submitOrder(event)" class="space-y-4">
       <div class="flex items-center gap-2 mb-3 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>INFORMATIONS • معلوماتك</div>
       <div class="grid grid-cols-2 gap-3">
-        <input type="text" id="nom" placeholder="Last name • اللقب" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400">
-        <input type="text" id="prenom" placeholder="First name • الاسم" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400">
+        <div class="fld"><input type="text" id="nom" placeholder="Last name • اللقب" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400"><span class="tk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span></div>
+        <div class="fld"><input type="text" id="prenom" placeholder="First name • الاسم" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400"><span class="tk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span></div>
       </div>
       <div>
-        <input type="tel" id="telephone" placeholder="0555 70 30 37" maxlength="13" inputmode="numeric" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400">
+        <div class="fld"><input type="tel" id="telephone" placeholder="0555 70 30 37" maxlength="13" inputmode="numeric" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400"><span class="tk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span></div>
         <p class="text-[11px] text-gray-500 mt-1.5 ml-1">Format: 05, 06 or 07 followed by 8 digits • 05 أو 06 أو 07 متبوعة بـ 8 أرقام</p>
       </div>
       <div class="flex items-center gap-2 mb-3 mt-6 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>DESTINATION • الوجهة</div>
       <div class="space-y-3">
-        <select id="wilaya" onchange="loadCommunes()" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Wilaya • الولاية</option></select>
-        <select id="commune" onchange="onCommuneChange()" disabled class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Municipality • البلدية</option></select>
+        <div class="fld sel"><select id="wilaya" onchange="loadCommunes()" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Wilaya • الولاية</option></select><span class="tk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span></div>
+        <div class="fld sel"><select id="commune" onchange="onCommuneChange()" disabled class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Municipality • البلدية</option></select><span class="tk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span></div>
       </div>
       <div class="flex items-center gap-2 mb-3 mt-6 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>DELIVERY • التوصيل</div>
       <div class="space-y-3">
@@ -250,7 +264,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
             <div class="flex justify-between items-center"><span class="font-bold text-gray-900 text-sm">Home delivery • للمنزل</span><span id="home-price" class="font-bold text-sm"></span></div>
             <p class="text-xs text-gray-500 mt-1">Delivered to your door</p>
             <div id="domicile-container" class="hidden mt-3">
-              <input type="text" id="adresse_domicile" placeholder="Your exact address (e.g. Didouche Mourad St.) • عنوانك الكامل" class="w-full p-3 text-sm bg-white border border-gray-200 rounded-xl outline-none placeholder-gray-400">
+              <div class="fld"><input type="text" id="adresse_domicile" placeholder="Your exact address (e.g. Didouche Mourad St.) • عنوانك الكامل" class="w-full p-3 text-sm bg-white border border-gray-200 rounded-xl outline-none placeholder-gray-400"><span class="tk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span></div>
               <p class="text-[11px] text-gray-500 mt-1">Minimum 3 characters required</p>
             </div>
           </div>
@@ -276,7 +290,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 const API_BASE_URL='https://vexback.onrender.com/api';
 const P={name:'Sudoku Pocket Book',price:1200,img:'https://ik.imagekit.io/vexaccess/IMG_7243.jpg'};
 /* TES LIENS : remplis seulement ce qui est entre guillemets (un lien vide est masqué) */
-const LINKS={instagram:"https://www.instagram.com/vex.accessoires",tiktok:"https://www.tiktok.com/@vex.essentials",developpeur:"https://www.instagram.com/luffydz.dev"};
+const LINKS={instagram:"https://www.instagram.com/vex.accessoires",tiktok:"https://www.tiktok.com/@vex.essentials",suivi:"https://zimouexpress.com/fr/suivi",developpeur:"https://www.instagram.com/luffydz.dev"};
 const WILAYAS=["Adrar","Chlef","Laghouat","Oum El Bouaghi","Batna","Béjaïa","Biskra","Béchar","Blida","Bouira","Tamanrasset","Tébessa","Tlemcen","Tiaret","Tizi Ouzou","Alger","Djelfa","Jijel","Sétif","Saïda","Skikda","Sidi Bel Abbès","Annaba","Guelma","Constantine","Médéa","Mostaganem","M'Sila","Mascara","Ouargla","Oran","El Bayadh","Illizi","Bordj Bou Arreridj","Boumerdès","El Tarf","Tindouf","Tissemsilt","El Oued","Khenchela","Souk Ahras","Tipaza","Mila","Aïn Defla","Naâma","Aïn Témouchent","Ghardaïa","Relizane","Timimoun","Bordj Badji Mokhtar","Ouled Djellal","Béni Abbès","In Salah","In Guezzam","Touggourt","Djanet","El M'Ghair","El Meniaa"];
 const CARRIERS=[["yalidine","Yalidine Express"],["zr express","ZR Express"],["maystro","Maystro Delivery"],["zimou express","Zimou Express"],["partenaire point relais","Partenaire Point Relais"],["noest","Noest Express"],["nord ouest","Noest Express"],["anderson","Anderson Express"],["world express","World Express"],["dhd","DHD Express"],["kazi","Kazi Tour"],["ecotrack","Ecotrack"],["gazelle","Gazelle Express"]];
 /* LOGOS DES BUREAUX : colle l'URL de chaque logo entre les guillemets (vide = icône 📦) */
@@ -417,6 +431,15 @@ function checks(){
      t?[t==='express'?$('#adresse_domicile'):$('#stopdesk-list')]:[$('#label-stopdesk'),$('#label-domicile')]]
   ];
 }
+/* coches animées : une règle par champ */
+const TICKS=[['nom',v=>v.length>0],['prenom',v=>v.length>0],['telephone',()=>PHONE_RE.test(phone())],['wilaya',v=>!!v],['commune',v=>!!v],['adresse_domicile',v=>v.length>=3]];
+function updateTicks(){
+  TICKS.forEach(([id,ok])=>{
+    const el=$('#'+id),box=el&&el.closest('.fld');if(!box)return;
+    const on=!!ok(el.value.trim());
+    if(box.classList.contains('ok')!==on)box.classList.toggle('ok',on);
+  });
+}
 let lastDone=-1;
 function updateProgress(){
   const c=checks(),n=c.filter(x=>x[0]).length;
@@ -424,6 +447,7 @@ function updateProgress(){
   $('#fp-label').textContent=n===6?'Ready to confirm • جاهز للتأكيد 🧩':'Your progress • تقدمك';
   $('#fp').classList.toggle('is-done',n===6);$('#submit-btn').classList.toggle('ready',n===6);
   if(lastDone!==-1&&n!==lastDone)retrig($('#fp-text'),'pop');lastDone=n;
+  updateTicks();
 }
 function flashMissing(){
   const els=checks().filter(x=>!x[0]).flatMap(x=>x[1]);if(!els.length)return;
@@ -453,11 +477,12 @@ function loadCommunes(){
   $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;homeStatus='';
   $('#stopdesk-list').innerHTML='<div class="text-sm text-gray-500 p-2 text-center">Please select a municipality • اختر البلدية</div>';
   $('#stopdesk-hint').textContent='Please select a municipality • اختر البلدية';
+  updateTicks();
   fetch(API_BASE_URL+'/communes/'+id).then(r=>r.json()).then(d=>{
     cs.innerHTML='<option value="" disabled selected>Municipality • البلدية</option>';
     (d.data||d).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name||c.nom;cs.appendChild(o)});
-    cs.disabled=false;retrig(cs,'pop');
-  }).catch(()=>{cs.innerHTML='<option value="" disabled selected>Loading error</option>';cs.disabled=false});
+    cs.disabled=false;retrig(cs,'pop');updateTicks();
+  }).catch(()=>{cs.innerHTML='<option value="" disabled selected>Loading error</option>';cs.disabled=false;updateTicks()});
 }
 function onCommuneChange(){
   const id=$('#commune').value;if(!id)return;
@@ -587,4 +612,4 @@ new IntersectionObserver(([e])=>sbar.classList.toggle('show',!e.isIntersecting&&
 updateCartUI();
 </script>
 </body>
-</html> 
+</html>
