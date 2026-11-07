@@ -118,9 +118,11 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 #sbar.show{transform:none}
 @media(max-width:767px){.fx-footer{padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}}
 /* bouton qui se transforme */
-.addbtn{position:relative;overflow:hidden;height:56px;transition:all .4s cubic-bezier(.68,-.3,.27,1.4)}
+.addbtn{position:relative;overflow:hidden;height:56px;flex:1 1 0%;min-width:0;padding:0 10px;transition:all .4s cubic-bezier(.68,-.3,.27,1.4)}
+.bt-t{display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.15;text-align:center;transition:opacity .2s}
+.addbtn.ok .bt-t{opacity:0}
 .addbtn .bt-c{position:absolute;inset:0;margin:auto;width:26px;height:26px;opacity:0;transform:scale(.3);transition:all .3s .15s}
-.addbtn.ok{align-self:center;width:56px;padding:0;border-radius:9999px;background:#22c55e;border-color:#22c55e;color:#fff!important;font-size:0}
+.addbtn.ok{flex:0 0 56px;width:56px;padding:0;border-radius:9999px;background:#22c55e;border-color:#22c55e;color:#fff!important;font-size:0}
 .addbtn.ok .bt-c{opacity:1;transform:none}
 /* choix d'un bureau */
 .ck8{flex:none;margin-left:auto;width:22px;height:22px;border-radius:9999px;border:2px solid #d1d5db;display:flex;align-items:center;justify-content:center;transition:all .25s}
@@ -142,6 +144,68 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .rc-dl{display:block;width:100%;margin-top:14px;padding:12px;border:2px solid #392E2C;border-radius:14px;background:#fff;font-weight:700;font-size:14px}
 .rc-dl:active{background:#f3f4f6}
 #success #rc-dl{animation:up .6s cubic-bezier(.16,1,.3,1) 1.5s both}
+
+/* ===== 2. Titre qui se résout ===== */
+.tw{display:inline-block;white-space:nowrap}
+.tl{position:relative;display:inline-block}
+.tl::before{content:attr(data-d);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.66em;color:#c9c1b9;pointer-events:none;animation:tld .5s ease calc(var(--k)*45ms) both}
+.tl-c{position:relative;z-index:1;display:inline-block;opacity:0;filter:blur(7px);transform:translateY(.3em) scale(.9);animation:tlc .62s cubic-bezier(.16,1,.3,1) calc(var(--k)*45ms + .18s) forwards}
+@keyframes tld{0%{opacity:0;transform:scale(.6)}30%{opacity:.85;transform:scale(1)}60%{opacity:.85;transform:scale(1.05)}100%{opacity:0;transform:scale(1.2)}}
+@keyframes tlc{to{opacity:1;filter:none;transform:none}}
+
+/* ===== 3. Grille de sudoku en fond ===== */
+.bg9{position:fixed;inset:0;z-index:-2;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden}
+.bg9-in{width:min(92vw,520px);aspect-ratio:1/1;display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);border:1px solid rgba(57,46,44,.08);border-radius:16px;overflow:hidden}
+.bg9 i{border-right:1px solid rgba(57,46,44,.07);border-bottom:1px solid rgba(57,46,44,.07);display:flex;align-items:center;justify-content:center;font:600 clamp(11px,2.5vw,17px) Poppins,sans-serif;font-style:normal;color:#392E2C;opacity:0;transform:scale(.6);transition:opacity .6s ease,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.bg9 i:nth-child(3n){border-right-color:rgba(57,46,44,.13)}
+.bg9 i:nth-child(n+19):nth-child(-n+27),.bg9 i:nth-child(n+46):nth-child(-n+54){border-bottom-color:rgba(57,46,44,.13)}
+.bg9 i.on{opacity:.1;transform:none}
+
+/* ===== 9. Reflet sur les boutons ===== */
+.btn-sheen{position:relative;overflow:hidden;isolation:isolate}
+.btn-sheen::after{content:"";position:absolute;top:0;bottom:0;left:0;width:55%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:translateX(-220%) skewX(-12deg);animation:sheenBtn 4.4s ease-in-out 1.4s infinite;pointer-events:none}
+@keyframes sheenBtn{0%,64%{transform:translateX(-220%) skewX(-12deg)}82%,100%{transform:translateX(320%) skewX(-12deg)}}
+
+/* ===== 12. Onde du panier ===== */
+.cart-ripple{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:9999px;border:2px solid rgba(23,23,23,.35);pointer-events:none}
+
+/* ===== 14 & 15. Labels flottants + coche dessinée ===== */
+.ff{position:relative}
+.ff>input,.ff>select{padding-top:1.35rem;padding-bottom:.38rem;padding-right:2.6rem}
+.ff-l{position:absolute;left:1rem;top:50%;transform:translateY(-50%);max-width:calc(100% - 2rem);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;color:#9ca3af;pointer-events:none;transition:top .2s,transform .2s,font-size .2s,color .2s,letter-spacing .2s}
+.ff.is-focus .ff-l,.ff.is-filled .ff-l{top:.55rem;transform:none;font-size:9.5px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:#9ca3af;max-width:calc(100% - 2.8rem)}
+.ff.is-focus .ff-l{color:#171717}
+.ff>input::placeholder{color:transparent!important}
+.ff:not(.is-filled)>select{color:transparent!important}
+.ff>select option{color:#392E2C}
+.ff-ok{position:absolute;right:.85rem;top:50%;width:18px;height:18px;transform:translateY(-50%) scale(.4);opacity:0;pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+.ff-ok svg{width:100%;height:100%;fill:none;stroke:#22c55e;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ff-ok path{stroke-dasharray:24;stroke-dashoffset:24}
+.ff.is-ok .ff-ok{opacity:1;transform:translateY(-50%) scale(1)}
+.ff.is-ok .ff-ok path{animation:draw .4s cubic-bezier(.65,0,.45,1) forwards}
+.ff.is-select .ff-ok{right:2.6rem}
+.ff.is-ok>input{padding-right:2.5rem}
+.ff.is-ok>select{padding-right:3.6rem}
+
+/* ===== 22. Icônes du menu ===== */
+@media(hover:hover){
+  .fx-menu-link .fx-ico{transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s}
+  .fx-menu-link:hover{transform:translateX(3px)}
+  .fx-menu-link:hover .fx-ico{transform:translateY(-2px) rotate(-6deg) scale(1.07);box-shadow:0 8px 18px rgba(0,0,0,.16)}
+  .fx-menu-link:hover .fx-ico svg{animation:icoWiggle .5s ease}
+}
+@keyframes icoWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}60%{transform:rotate(6deg)}}
+
+/* ===== 23. Soulignement "encre" du footer ===== */
+.fx-footer a{text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1.5px;padding-bottom:1px;transition:background-size .32s cubic-bezier(.16,1,.3,1)}
+.fx-footer a:hover{background-size:100% 1.5px}
+
+@media (prefers-reduced-motion:reduce){
+  .tl-c{opacity:1!important;filter:none!important;transform:none!important;animation:none!important}
+  .tl::before{display:none!important}
+  .btn-sheen::after{display:none}
+  .bg9{display:none}
+}
 </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen flex flex-col font-sans">
@@ -151,7 +215,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <button id="menu-btn" type="button" aria-label="Menu" class="p-2 text-eva-burgundy hover:bg-eva-pinkLight rounded-full transition btn-tactile">
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
-    <img src="https://ik.imagekit.io/vexaccess/IMG_7235.JPG?updatedAt=1793621876079" alt="Logo Vex Store" class="h-8 w-auto absolute left-1/2 -translate-x-1/2">
+    <img id="logo" src="https://ik.imagekit.io/vexaccess/IMG_7235.JPG?updatedAt=1793621876079" alt="Logo Vex Store" role="button" tabindex="0" draggable="false" aria-label="Back to top • Retour en haut" class="h-8 w-auto absolute left-1/2 -translate-x-1/2 cursor-pointer select-none">
     <button id="cart-btn" onclick="openModal()" aria-label="Cart" class="relative p-2 text-eva-burgundy hover:bg-eva-pinkLight rounded-full transition btn-tactile">
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
       <span id="cart-count" class="absolute top-0 right-0 bg-gray-900 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center" style="transform:scale(0)">0</span>
@@ -159,36 +223,33 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
   </div>
 </header>
 
-<main class="flex-grow py-0 md:py-10 px-0 md:px-4">
-  <div class="max-w-4xl mx-auto bg-white md:rounded-2xl md:shadow-sm md:border border-gray-100 overflow-hidden flex flex-col md:flex-row">
-    <div class="fx-up md:w-1/2 bg-gray-50 flex items-center justify-center p-0 md:p-6" style="--d:.15s">
-      <div class="relative w-full overflow-hidden md:rounded-xl md:shadow-md">
+<main class="flex-grow max-w-2xl mx-auto w-full px-4 py-8 flex flex-col gap-6">
+  <div>
+    <h1 id="title" class="text-3xl md:text-4xl font-bold text-eva-burgundy mb-2">Sudoku Pocket Book</h1>
+    <p class="fx-up text-lg text-gray-500 mb-4" dir="rtl" style="--d:.45s">كتيب السودوكو بحجم صغير 🧩</p>
+    <p id="price" class="fx-up text-3xl font-bold mb-4" style="--d:.6s">1200 DA</p>
+    <p class="fx-up text-gray-600 leading-relaxed" style="--d:.75s">Train your brain every day with our Sudoku Pocket Book. Ideal for boosting focus and memory.<span dir="rtl" class="block mt-2 text-gray-500">درّب عقلك يوميًا مع كتيب السودوكو بحجم صغير. مثالي لتعزيز التركيز والذاكرة.</span></p>
+  </div>
+  <div class="fx-up w-full rounded-3xl overflow-hidden bg-white shadow-md border border-gray-100" style="--d:.9s">
+    <div class="relative w-full overflow-hidden">
         <div id="gal" class="flex overflow-x-auto snap-x snap-mandatory w-full"></div>
         <button type="button" id="gal-prev" class="gal-ar" style="left:10px" aria-label="Previous photo"><svg width="18" height="18" fill="none" stroke="#392E2C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
         <button type="button" id="gal-next" class="gal-ar" style="right:10px" aria-label="Next photo"><svg width="18" height="18" fill="none" stroke="#392E2C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
         <div id="gal-dots" class="absolute bottom-3 inset-x-0 flex justify-center gap-1.5"></div>
       </div>
-    </div>
-    <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
-      <h1 id="title" class="text-3xl md:text-4xl font-bold text-eva-burgundy mb-2">Sudoku Pocket Book</h1>
-      <p class="fx-up text-lg text-gray-500 mb-4" dir="rtl" style="--d:.45s">كتيب السودوكو بحجم صغير 🧩</p>
-      <p id="price" class="fx-up text-2xl font-semibold text-gray-900 mb-6" style="--d:.6s">1200 DA</p>
-      <p class="fx-up text-gray-600 mb-8 leading-relaxed" style="--d:.75s">Train your brain every day with our Sudoku Pocket Book. Ideal for boosting focus and memory.<span dir="rtl" class="block mt-2 text-gray-500">درّب عقلك يوميًا مع كتيب السودوكو بحجم صغير. مثالي لتعزيز التركيز والذاكرة.</span></p>
-      <div class="fx-up mb-6" style="--d:.9s">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Quantity • الكمية</label>
-        <div class="inline-flex items-center border-2 border-gray-200 rounded-lg overflow-hidden">
-          <button onclick="updateDisplayQty(-1)" class="px-5 py-3 bg-gray-50 text-gray-600 hover:bg-gray-100 font-bold text-lg btn-tactile">-</button>
-          <span id="display-qty" class="inline-block px-6 py-3 font-semibold text-lg min-w-[3rem] text-center border-x-2 border-gray-200">1</span>
-          <button onclick="updateDisplayQty(1)" class="px-5 py-3 bg-gray-50 text-gray-600 hover:bg-gray-100 font-bold text-lg btn-tactile">+</button>
-        </div>
-      </div>
-      <div id="cta" class="fx-up flex flex-col gap-3" style="--d:1s">
-        <button onclick="addToCart(this)" class="addbtn w-full bg-eva-pinkLight text-eva-burgundy border border-gray-200 font-bold rounded-xl hover:bg-gray-200 btn-tactile text-lg">Add to cart • أضف إلى السلة<svg class="bt-c" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></button>
-        <button onclick="buyNow()" class="w-full bg-eva-burgundy text-white font-bold py-3.5 rounded-xl hover:bg-eva-burgundy-dark transition shadow-md btn-tactile text-lg">Confirm your order • أكّد طلبك</button>
-      </div>
-    </div>
   </div>
-  <div class="max-w-4xl mx-auto mt-8 px-2 md:px-0 grid grid-cols-3 gap-2 text-center pb-6">
+  <div id="cta" class="fx-up flex flex-col gap-4" style="--d:1s">
+    <div class="flex items-center justify-center gap-3 w-full">
+      <div class="flex items-center border border-gray-300 rounded-2xl bg-white px-3 h-[56px]">
+        <button type="button" onclick="updateDisplayQty(-1)" aria-label="Decrease quantity" class="text-gray-500 hover:text-black text-xl font-medium px-2 btn-tactile">&minus;</button>
+        <span id="display-qty" class="inline-block text-gray-900 font-medium text-lg px-3 min-w-[2.5rem] text-center">1</span>
+        <button type="button" onclick="updateDisplayQty(1)" aria-label="Increase quantity" class="text-gray-500 hover:text-black text-xl font-medium px-2 btn-tactile">+</button>
+      </div>
+      <button onclick="addToCart(this)" class="addbtn bg-black hover:bg-gray-800 text-white rounded-2xl font-bold text-[14px] md:text-lg btn-tactile"><span class="bt-t"><svg class="w-5 h-5 shrink-0 fill-current" viewBox="0 0 24 24"><path d="M17 18c-1.11 0-2 .89-2 2s.89 2 2 2 2-.89 2-2-.89-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm6 16c-1.11 0-2 .89-2 2s.89 2 2 2 2-.89 2-2-.89-2-2-2z"/></svg><span>Add to cart • أضف إلى السلة</span></span><svg class="bt-c" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></button>
+    </div>
+    <button onclick="buyNow()" class="btn-sheen w-full py-4 bg-eva-burgundy hover:bg-eva-burgundy-dark text-white rounded-2xl font-bold transition-all text-lg shadow-lg btn-tactile">Confirm your order • أكّد طلبك</button>
+  </div>
+  <div class="grid grid-cols-3 gap-2 text-center pb-4">
     <div class="stagger-item flex flex-col items-center" style="transition-delay:.1s"><div class="w-14 h-14 bg-eva-pinkLight rounded-full flex items-center justify-center text-2xl mb-3">🚚</div><h3 class="font-semibold text-xs md:text-sm leading-tight">Fast delivery across Algeria<span dir="rtl" class="block text-gray-500 mt-0.5">توصيل سريع في كل الجزائر</span></h3></div>
     <div class="stagger-item flex flex-col items-center" style="transition-delay:.25s"><div class="w-14 h-14 bg-eva-pinkLight rounded-full flex items-center justify-center text-2xl mb-3">💵</div><h3 class="font-semibold text-xs md:text-sm leading-tight">Cash on delivery<span dir="rtl" class="block text-gray-500 mt-0.5">الدفع عند الاستلام</span></h3></div>
     <div class="stagger-item flex flex-col items-center" style="transition-delay:.4s"><div class="w-14 h-14 bg-eva-pinkLight rounded-full flex items-center justify-center text-2xl mb-3">🧠</div><h3 class="font-semibold text-xs md:text-sm leading-tight">100% Beneficial<span dir="rtl" class="block text-gray-500 mt-0.5">مفيد بنسبة 100%</span></h3></div>
@@ -279,7 +340,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
         <div class="flex justify-between text-sm font-medium text-gray-600 mb-2 px-1"><span>Subtotal • المجموع الفرعي</span><span id="sum-sub" class="inline-block">0 DA</span></div>
         <div class="flex justify-between text-sm font-medium text-gray-600 mb-3 px-1"><span>Delivery • التوصيل</span><span id="sum-ship" class="inline-block font-bold text-gray-900">Choose delivery • اختر التوصيل</span></div>
         <div class="flex justify-between font-bold text-lg md:text-xl mb-4 px-1 pt-3 border-t border-gray-100"><span>Total • المجموع</span><span id="cart-total" class="inline-block">0 DA</span></div>
-        <button id="submit-btn" type="submit" class="w-full bg-eva-burgundy text-white font-bold py-4 rounded-2xl hover:bg-eva-burgundy-dark transition shadow-lg btn-tactile text-lg">Place order • تأكيد الطلب</button>
+        <button id="submit-btn" type="submit" class="btn-sheen w-full bg-eva-burgundy text-white font-bold py-4 rounded-2xl hover:bg-eva-burgundy-dark transition shadow-lg btn-tactile text-lg">Place order • تأكيد الطلب</button>
       </div>
     </form>
   </div>
@@ -303,15 +364,15 @@ const WILAYAS=["Adrar","Chlef","Laghouat","Oum El Bouaghi","Batna","Béjaïa","B
 const CARRIERS=[["yalidine","Yalidine Express"],["zr express","ZR Express"],["maystro","Maystro Delivery"],["zimou express","Zimou Express"],["partenaire point relais","Partenaire Point Relais"],["noest","Noest Express"],["nord ouest","Noest Express"],["anderson","Anderson Express"],["world express","World Express"],["dhd","DHD Express"],["kazi","Kazi Tour"],["ecotrack","Ecotrack"],["gazelle","Gazelle Express"]];
 /* LOGOS DES BUREAUX : colle l'URL de chaque logo entre les guillemets (vide = icône 📦) */
 const LOGOS={
-  "Yalidine Express":"https://ik.imagekit.io/vexaccess/1twbrw8xoMWK1h9sdRhKdI1JQBkBqHpggcOytFDY.svg",
-  "ZR Express":"https://ik.imagekit.io/vexaccess/0Q2ELStA5D4OdfncOY3zVvPSUijoLVknT1eEzyTv.svg",
-  "Maystro Delivery":"https://ik.imagekit.io/vexaccess/vOigAOwX95np3YfAl2KHFZTxV4sgsApjFxyHdo1u.svg?updatedAt=1793752741116",
-  "Zimou Express":"https://ik.imagekit.io/vexaccess/kgpDluZg45cjgvWacRcAnV6mEHwgRFG5dmAEB6AB.svg",
-  "Partenaire Point Relais":"https://ik.imagekit.io/vexaccess/SWnI0NhKpJSikoaQjf8XgkY2MvTvzeOtYQCMZifn.svg?updatedAt=1793752697235",
-  "Noest Express":"https://ik.imagekit.io/vexaccess/8zd2kfjvZbrvtUYQFUBpwKPmPK2m0yQvM3ITjYFd.svg",
-  "Anderson Express":"https://ik.imagekit.io/vexaccess/401VLgCQ3l7Kw97GnYZTwJlymnm1awY36cOghllI.svg?updatedAt=1793752600971",
-  "World Express":"https://ik.imagekit.io/vexaccess/zzgAcMgTGqN8e6A1g0FVV4rSgTu45rNrS3IzIqCH.svg",
-  "DHD Express":"https://ik.imagekit.io/vexaccess/3Wztz7vZNPTnXGSZpC4ew6KaHwX82Tmi2OEcahTz.svg?updatedAt=1793752656620",
+  "Yalidine Express":"https://zimou.express/storage/5906/1twbrw8xoMWK1h9sdRhKdI1JQBkBqHpggcOytFDY.svg",
+  "ZR Express":"https://zimou.express/storage/5902/0Q2ELStA5D4OdfncOY3zVvPSUijoLVknT1eEzyTv.svg",
+  "Maystro Delivery":"https://zimou.express/storage/5918/vOigAOwX95np3YfAl2KHFZTxV4sgsApjFxyHdo1u.svg",
+  "Zimou Express":"https://zimou.express/storage/5921/kgpDluZg45cjgvWacRcAnV6mEHwgRFG5dmAEB6AB.svg",
+  "Partenaire Point Relais":"https://zimou.express/storage/5277/mKNdCFtYI5T9WW60HhrMMr1xDFGVTAkEgjveVwWc.svg",
+  "Noest Express":"https://zimou.express/storage/5916/8zd2kfjvZbrvtUYQFUBpwKPmPK2m0yQvM3ITjYFd.svg",
+  "Anderson Express":"https://zimou.express/storage/5922/401VLgCQ3l7Kw97GnYZTwJlymnm1awY36cOghllI.svg",
+  "World Express":"https://zimou.express/storage/5919/zzgAcMgTGqN8e6A1g0FVV4rSgTu45rNrS3IzIqCH.svg",
+  "DHD Express":"https://zimou.express/storage/5913/3Wztz7vZNPTnXGSZpC4ew6KaHwX82Tmi2OEcahTz.svg",
   "Kazi Tour":"",
   "Ecotrack":"",
   "Gazelle Express":""
@@ -339,7 +400,13 @@ function showToast(msg,type='success'){
 }
 
 /* ---------- Panier ---------- */
-function updateDisplayQty(d){currentQty=Math.max(1,currentQty+d);const n=$('#display-qty');n.textContent=currentQty;retrig(n,'pop')}
+function updateDisplayQty(d){
+  const prev=currentQty;currentQty=Math.max(1,currentQty+d);
+  if(currentQty===prev)return;
+  const n=$('#display-qty');n.textContent=currentQty;
+  if(reduce){retrig(n,'pop');return}
+  n.animate([{transform:'translateY('+(d>0?55:-55)+'%)',opacity:0},{transform:'none',opacity:1}],{duration:280,easing:'cubic-bezier(.16,1,.3,1)'});
+}
 function updateCartUI(){
   const list=$('#cart-items');let n=0,t=0;list.innerHTML='';
   cart.forEach((it,i)=>{
@@ -370,6 +437,22 @@ function flyToCart(from){
   f.style.cssText='position:fixed;left:'+sx+'px;top:'+sy+'px;width:'+S+'px;height:'+S+'px;object-fit:cover;border-radius:50%;border:3px solid #fff;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:400;pointer-events:none';
   document.body.appendChild(f);
   f.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+dx*.4+'px,'+(dy*.4-80)+'px) scale(.8)',opacity:1,offset:.4},{transform:'translate('+dx+'px,'+dy+'px) scale(.2)',opacity:.5}],{duration:850,easing:'ease-in-out'}).onfinish=()=>f.remove();
+  /* onde autour du panier */
+  const rp=document.createElement('span');rp.className='cart-ripple';c.appendChild(rp);
+  rp.animate([{transform:'scale(.35)',opacity:.9},{transform:'scale(1.9)',opacity:0}],{duration:650,easing:'cubic-bezier(.16,1,.3,1)'}).onfinish=()=>rp.remove();
+  /* éclats 🧩 qui suivent l'image */
+  const bits=['🧩','🧩','✨','🧩','💡'];
+  bits.forEach((em,i)=>{
+    const s=document.createElement('span');s.textContent=em;
+    s.style.cssText='position:fixed;left:'+(sx+S/2)+'px;top:'+(sy+S/2)+'px;font-size:'+(13+Math.random()*9)+'px;z-index:399;pointer-events:none;will-change:transform';
+    document.body.appendChild(s);
+    const jx=(Math.random()*2-1)*56,jy=(Math.random()*2-1)*44;
+    s.animate([
+      {transform:'translate(-50%,-50%) scale(.4)',opacity:1},
+      {transform:'translate(calc(-50% + '+(dx*.4+jx)+'px),calc(-50% + '+(dy*.4+jy-70)+'px)) scale(1)',opacity:1,offset:.45},
+      {transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) scale(.15)',opacity:0}
+    ],{duration:780+Math.random()*260,delay:i*55,easing:'cubic-bezier(.3,.7,.3,1)',fill:'backwards'}).onfinish=()=>s.remove();
+  });
 }
 function addToCart(btn){
   const ex=cart[0];
@@ -397,7 +480,7 @@ function updateSummary(){
   if(hp.dataset.v!==hv){hp.dataset.v=hv;hp.innerHTML=hv==='sk'?'<span class="sk inline-block w-14 h-4 align-middle"></span>':hv}
   const ship=$('#sum-ship');
   if(t==='express'&&homeStatus==='loading'){if(ship.dataset.sk!=='1'){ship.dataset.sk='1';ship._v=undefined;ship.innerHTML='<span class="sk inline-block w-24 h-4 align-middle"></span>'}}
-  else{delete ship.dataset.sk;f!==null?roll('#sum-ship',f):set('#sum-ship',!t?'Choose delivery • اختر التوصيل':t==='stopdesk'?'Choose an office • اختر مكتبا':homeStatus||'Confirmed by phone • تأكيد هاتفي')}
+  else{delete ship.dataset.sk;f!==null?roll('#sum-ship',f):set('#sum-ship',!t?'Choose delivery • اختر التوصيل':t==='stopdesk'?'Choose an office • اختر مكتبا':homeStatus||'Choose your municipality • اختر بلديتك')}
   roll('#cart-total',sub+(f||0));
 }
 
@@ -407,7 +490,7 @@ function openModal(){
   const m=$('#cart-modal');if(!m.classList.contains('hidden'))return;
   updateCartUI();
   m.classList.remove('hidden','closing');m.classList.add('flex');
-  document.body.style.overflow='hidden';updateProgress();
+  document.body.style.overflow='hidden';prevSteps=[];playStepIn();updateProgress();
 }
 function resetCheckout(){
   $('#checkout-form').reset();
@@ -417,7 +500,7 @@ function resetCheckout(){
   $('#stopdesk-container').classList.add('hidden');$('#domicile-container').classList.add('hidden');$('#stopdesk-hint').classList.remove('hidden');
   $('#commune').innerHTML='<option value="" disabled selected>Municipality • البلدية</option>';$('#commune').disabled=true;
   $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;homeStatus='';
-  $('#telephone').classList.remove('is-valid','is-invalid');updateProgress();updateSummary();loadPrefill();
+  $('#telephone').classList.remove('is-valid','is-invalid');prevSteps=[];syncFloats();updateProgress();updateSummary();loadPrefill();
 }
 function closeModal(){
   const m=$('#cart-modal');if(m.classList.contains('hidden')||m.classList.contains('closing'))return;
@@ -445,7 +528,12 @@ function updateProgress(){
   $('#fp-fill').style.width=(n/6*100)+'%';$('#fp-text').textContent=n+'/6';
   $('#fp-label').textContent=n===6?'Ready to confirm • جاهز للتأكيد 🧩':'Your progress • تقدمك';
   $('#fp').classList.toggle('is-done',n===6);$('#submit-btn').classList.toggle('ready',n===6);
-  if(lastDone!==-1&&n!==lastDone)retrig($('#fp-text'),'pop');lastDone=n;
+  if(lastDone!==-1&&n!==lastDone)retrig($('#fp-text'),'pop');
+  if(lastDone!==-1&&n===6&&lastDone<6)miniBurst();
+  lastDone=n;
+  const st=stepDone();
+  if(prevSteps.length===st.length)st.forEach((ok,i)=>{if(ok&&!prevSteps[i])nudgeStep(i+1)});
+  prevSteps=st;
 }
 function flashMissing(){
   const els=checks().filter(x=>!x[0]).flatMap(x=>x[1]);if(!els.length)return;
@@ -478,7 +566,7 @@ function loadCommunes(){
   fetch(API_BASE_URL+'/communes/'+id).then(r=>r.json()).then(d=>{
     cs.innerHTML='<option value="" disabled selected>Municipality • البلدية</option>';
     (d.data||d).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name||c.nom;cs.appendChild(o)});
-    cs.disabled=false;retrig(cs,'pop');
+    cs.disabled=false;retrig(cs,'pop');syncFloats();
   }).catch(()=>{cs.innerHTML='<option value="" disabled selected>Loading error</option>';cs.disabled=false});
 }
 function onCommuneChange(){
@@ -574,7 +662,16 @@ pn.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
 pn.addEventListener('touchend',e=>{if(x0!==null&&e.changedTouches[0].clientX-x0<-60)menuToggle(false);x0=null},{passive:true});
 
 /* ---------- Animations d'entrée ---------- */
-const h1=$('#title');h1.innerHTML=h1.textContent.split(' ').map((w,i)=>'<span class="fx-w" style="--k:'+i+'">'+esc(w)+'</span>').join(' ');
+const h1=$('#title'),h1Txt=h1.textContent.trim();
+h1.setAttribute('aria-label',h1Txt);
+if(reduce){h1.textContent=h1Txt}
+else{
+  const dg=[5,3,4,6,7,2,1,9,8,5,3,4,6,7,2,1,9,8,5,3];let k=0;
+  h1.innerHTML=h1Txt.split(' ').map(w=>'<span class="tw">'+Array.from(w).map(ch=>{
+    const d=dg[k%dg.length];
+    return '<span class="tl" style="--k:'+(k++)+'" data-d="'+d+'"><span class="tl-c">'+esc(ch)+'</span></span>';
+  }).join('')+'</span>').join(' ');
+}
 const hdr=$('#site-header'),sc=()=>hdr.classList.toggle('is-scrolled',scrollY>8);addEventListener('scroll',sc,{passive:true});sc();
 if(!reduce){
   const pr=$('#price');setTimeout(()=>{const t0=performance.now();(function f(t){const p=Math.min((t-t0)/900,1);pr.textContent=Math.round(P.price*(1-Math.pow(1-p,3)))+' DA';if(p<1)requestAnimationFrame(f)})(t0)},700);
@@ -625,7 +722,7 @@ const PREF='vex_prefill';
 function loadPrefill(){
   try{const o=JSON.parse(localStorage.getItem(PREF)||'null');if(!o)return;
     $('#nom').value=o.nom||'';$('#prenom').value=o.prenom||'';$('#telephone').value=fmt(o.tel||'');
-    $('#telephone').dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}
+    $('#telephone').dispatchEvent(new Event('input',{bubbles:true}));syncFloats();}catch(e){}
 }
 /* ---------- Recu en image ---------- */
 async function receiptPNG(m,d){
@@ -687,6 +784,151 @@ async function downloadReceipt(){
   }
   const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);
 }
+/* ---------- 14 & 15. Labels flottants + coche dans tous les champs ---------- */
+const floatFields=[];
+function fieldValid(el){
+  const v=el.value.trim();
+  if(el.id==='telephone')return PHONE_RE.test(phone());
+  if(el.id==='adresse_domicile')return v.length>=3;
+  return v.length>0;
+}
+function setupFloat(el){
+  if(!el||el.dataset.fl)return;
+  el.dataset.fl='1';
+  const wrap=document.createElement('div');
+  wrap.className='ff'+(el.tagName==='SELECT'?' is-select':'');
+  el.parentNode.insertBefore(wrap,el);
+  wrap.appendChild(el);
+  const lab=document.createElement(el.closest('label')?'span':'label');
+  lab.className='ff-l';if(lab.tagName==='LABEL')lab.htmlFor=el.id;
+  const shortLabels={adresse_domicile:'Your exact address • عنوانك'};
+  lab.textContent=shortLabels[el.id]||el.getAttribute('placeholder')||(el.options&&el.options[0]?el.options[0].textContent:'');
+  wrap.appendChild(lab);
+  const ok=document.createElement('span');
+  ok.className='ff-ok';ok.setAttribute('aria-hidden','true');
+  ok.innerHTML='<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>';
+  wrap.appendChild(ok);
+  const sync=()=>{
+    wrap.classList.toggle('is-filled',!!el.value.trim());
+    wrap.classList.toggle('is-ok',fieldValid(el));
+  };
+  el.addEventListener('focus',()=>wrap.classList.add('is-focus'));
+  el.addEventListener('blur',()=>wrap.classList.remove('is-focus'));
+  el.addEventListener('input',sync);
+  el.addEventListener('change',sync);
+  floatFields.push({el,wrap,sync});
+  sync();
+}
+['nom','prenom','telephone','wilaya','commune','adresse_domicile'].forEach(id=>setupFloat($('#'+id)));
+function syncFloats(){floatFields.forEach(f=>f.sync())}
+
+/* ---------- 16. Étapes du formulaire ---------- */
+const stepGroups=[[0,1,2],[3,4],[5,6],[7]].map(ix=>ix.map(i=>form.children[i]).filter(Boolean));
+let prevSteps=[];
+function stepDone(){
+  const v=id=>$('#'+id).value.trim(),t=($('input[name="delivery_type"]:checked')||{}).value;
+  return [
+    !!(v('prenom')&&v('nom')&&PHONE_RE.test(phone())),
+    !!(v('wilaya')&&v('commune')),
+    t?(t==='express'?v('adresse_domicile').length>=3:!!$('#stopdesk_val').value):false,
+    checks().every(c=>c[0])
+  ];
+}
+function playStepIn(){
+  if(reduce)return;
+  stepGroups.forEach((g,gi)=>g.forEach((el,ei)=>el.animate(
+    [{opacity:0,transform:'translateX(26px)'},{opacity:1,transform:'none'}],
+    {duration:520,delay:gi*110+ei*45,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}
+  )));
+}
+function nudgeStep(gi){
+  const g=stepGroups[gi];if(!g||reduce)return;
+  g.forEach((el,ei)=>el.animate(
+    [{opacity:.5,transform:'translateX(16px)'},{opacity:1,transform:'none'}],
+    {duration:520,delay:ei*45,easing:'cubic-bezier(.16,1,.3,1)'}
+  ));
+}
+
+/* ---------- 17. Petite explosion à 6/6 ---------- */
+function miniBurst(){
+  if(reduce)return;
+  let ref=$('#fp');
+  if(ref){const r=ref.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)ref=$('#submit-btn')}
+  if(!ref)ref=$('#submit-btn');if(!ref)return;
+  const a=ref.getBoundingClientRect(),cx=a.left+a.width/2,cy=a.top+a.height/2;
+  const em=['✨','🧩','🎯','🧠','💡','🔢'];
+  for(let i=0;i<18;i++){
+    const s=document.createElement('span');s.textContent=em[i%em.length];
+    s.style.cssText='position:fixed;left:'+cx+'px;top:'+cy+'px;font-size:'+(11+Math.random()*13)+'px;z-index:550;pointer-events:none;will-change:transform';
+    document.body.appendChild(s);
+    const ang=(Math.PI*2*i)/18+Math.random()*.4,d=70+Math.random()*130;
+    s.animate([
+      {transform:'translate(-50%,-50%) scale(.3)',opacity:1},
+      {transform:'translate(calc(-50% + '+(Math.cos(ang)*d)+'px),calc(-50% + '+(Math.sin(ang)*d)+'px)) scale(1)',opacity:1,offset:.6},
+      {transform:'translate(calc(-50% + '+(Math.cos(ang)*d*1.3)+'px),calc(-50% + '+(Math.sin(ang)*d*1.3+150)+'px)) scale(.7)',opacity:0}
+    ],{duration:1100+Math.random()*500,easing:'cubic-bezier(.2,.7,.3,1)',fill:'forwards'}).onfinish=()=>s.remove();
+  }
+}
+
+/* ---------- Logo : retour en haut + pluie d'emojis au triple-clic ---------- */
+function emojiRain(){
+  if(reduce||document.querySelector('.rain-layer'))return;
+  const layer=document.createElement('div');layer.className='rain-layer';
+  layer.setAttribute('aria-hidden','true');
+  layer.style.cssText='position:fixed;inset:0;z-index:600;pointer-events:none;overflow:hidden';
+  document.body.appendChild(layer);
+  const EMO=['🧩','✨','🧠','🔢','💡','🎯','📚','✏️','⭐','🧩','💛','🔢'];
+  for(let i=0;i<46;i++){
+    const s=document.createElement('span');s.textContent=EMO[i%EMO.length];
+    s.style.cssText='position:absolute;top:-12vh;left:'+(Math.random()*96)+'vw;font-size:'+(16+Math.random()*22)+'px;will-change:transform';
+    layer.appendChild(s);
+    const dx=(Math.random()*2-1)*120,rot=(Math.random()*2-1)*540;
+    s.animate([
+      {transform:'translate3d(0,-12vh,0) rotate(0deg)',opacity:0},
+      {transform:'translate3d('+(dx*.35)+'px,38vh,0) rotate('+(rot*.25)+'deg)',opacity:1,offset:.16},
+      {transform:'translate3d('+dx+'px,118vh,0) rotate('+rot+'deg)',opacity:1}
+    ],{duration:2400+Math.random()*1900,delay:Math.random()*650,easing:'cubic-bezier(.3,.6,.35,1)',fill:'backwards'});
+  }
+  setTimeout(()=>layer.remove(),5400);
+}
+const logoEl=$('#logo');
+if(logoEl){
+  let taps=[];
+  const goTop=()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+  logoEl.addEventListener('click',()=>{
+    const now=Date.now();taps=taps.filter(t=>now-t<800);taps.push(now);
+    if(taps.length>=3){taps=[];emojiRain()}
+    goTop();
+  });
+  logoEl.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goTop()}});
+}
+
+/* ---------- 3. Grille de sudoku qui se remplit au scroll ---------- */
+if(!reduce){
+  const bg=document.createElement('div');bg.className='bg9';bg.setAttribute('aria-hidden','true');
+  const gi=document.createElement('div');gi.className='bg9-in';
+  const cells=[];
+  for(let i=0;i<81;i++){
+    const r=Math.floor(i/9),col=i%9,d=((r*3+Math.floor(r/3)+col)%9)+1;
+    const c=document.createElement('i');c.textContent=d;gi.appendChild(c);cells.push(c);
+  }
+  bg.appendChild(gi);document.body.prepend(bg);
+  const order=Array.from({length:81},(_,i)=>i).sort(()=>Math.random()-.5);
+  let lastN=-1;
+  const paint=()=>{
+    const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+    const p=Math.min(1,Math.max(0,scrollY/max)),n=3+Math.round(p*23);
+    if(n===lastN)return;lastN=n;
+    const set=new Set(order.slice(0,n));
+    cells.forEach((c,i)=>c.classList.toggle('on',set.has(i)));
+  };
+  let raf=false;
+  const onBgScroll=()=>{if(raf)return;raf=true;requestAnimationFrame(()=>{raf=false;paint()})};
+  addEventListener('scroll',onBgScroll,{passive:true});
+  addEventListener('resize',onBgScroll,{passive:true});
+  paint();
+}
+
 loadPrefill();
 updateCartUI();
 </script>
