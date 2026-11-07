@@ -33,17 +33,6 @@ body{background:#FBFAF8;color:#392E2C}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fall{0%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(34px,55vh,0) rotate(180deg)}100%{transform:translate3d(-24px,115vh,0) rotate(360deg)}}
 @keyframes sheen{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-@keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
-@keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-60px) scale(.5) rotate(var(--rot))}}
-@keyframes slideLeft{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-60px) scale(.8)}}
-@keyframes vanish{to{opacity:0;transform:scale(.3) translateY(-40px)}}
-@keyframes zoomIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
-@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes twitch{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
-@keyframes vanishArrow{0%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(1.5) translateX(20px)}100%{opacity:0;transform:scale(0) translateX(40px)}}
-@keyframes glow{0%,100%{box-shadow:0 0 5px rgba(34,197,94,.3)}50%{box-shadow:0 0 20px rgba(34,197,94,.6)}}
-@keyframes paintDown{from{height:0}to{height:var(--h)}}
-
 .fx-up{opacity:0;animation:up .85s cubic-bezier(.16,1,.3,1) var(--d,0s) forwards}
 .fx-w{display:inline-block;opacity:0;animation:word .8s cubic-bezier(.16,1,.3,1) calc(.05s + var(--k,0)*55ms) forwards}
 .rise{animation:up .55s cubic-bezier(.16,1,.3,1) calc(var(--i,0)*70ms + 100ms) both}
@@ -89,7 +78,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 #success h3{animation:up .6s cubic-bezier(.16,1,.3,1) 2.3s both}
 #success p{animation:up .6s cubic-bezier(.16,1,.3,1) 2.5s both}
 #success button{animation:up .6s cubic-bezier(.16,1,.3,1) 4.6s both}
-/* Menu */
+/* menu */
 .fx-menu{position:fixed;inset:0;z-index:60;visibility:hidden;transition:visibility 0s linear .45s}
 .fx-menu.is-open{visibility:visible;transition-delay:0s}
 .fx-menu-bd{position:absolute;inset:0;background:rgba(17,24,39,.5);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .35s}
@@ -101,8 +90,10 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .fx-ico{flex:none;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center}
 .fx-menu.is-open .fx-menu-link,.fx-menu.is-open .fx-credit{animation:up .55s cubic-bezier(.16,1,.3,1) calc(var(--i,0)*80ms + 180ms) both}
 .fx-credit{margin-top:auto;padding-top:20px;border-top:2px dashed #e5e7eb;text-align:center;font-size:13px;color:#9ca3af}
+.fx-credit a,.fx-footer a{color:#171717;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .fx-footer{padding:8px 16px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;font-size:13px;color:#9ca3af}
-.fx-footer a,.fx-menu-link a{color:#171717;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.petals{display:none}#success *,.sg{animation-delay:0s!important}}
+
 /* grille de Sudoku */
 .sg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:112px;height:112px;margin:0 auto;animation:gridout .5s ease 1.9s forwards}
 .sg i{display:flex;align-items:center;justify-content:center;font:700 22px Poppins,sans-serif;font-style:normal;border:2px solid #392E2C;border-radius:10px;opacity:0;transform:scale(.4);animation:cellin .45s cubic-bezier(.34,1.56,.64,1) var(--d,0s) forwards}
@@ -116,7 +107,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .rc-slot{position:relative;z-index:2;height:8px;border-radius:9999px;background:#392E2C}
 .rc-clip{overflow:hidden;margin:-3px 8px 0;padding-bottom:12px}
 .rc-paper{background:#fff;padding:18px 16px 24px;text-align:left;font-size:13px;color:#392E2C;border-top:5px solid #d9d2cc;filter:drop-shadow(0 6px 8px rgba(57,46,44,.15));clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),91.667% 100%,83.333% calc(100% - 8px),75% 100%,66.667% calc(100% - 8px),58.333% 100%,50% calc(100% - 8px),41.667% 100%,33.333% calc(100% - 8px),25% 100%,16.667% calc(100% - 8px),8.333% 100%,0 calc(100% - 8px));animation:print 1.5s cubic-bezier(.22,.8,.3,1) both}
-.rb{font-weight:700;font-size:18px;text-align:center}.rs{text-align:center;font-size:11px;opacity:.6}.rn{text-align:center;margin-top:12px}
+.rb{font-weight:700;font-size:18px;text-align:center}.rs{text-align:center;font-size:11px;opacity:.6}.rn{text-align:center;margin-top:12px;font-size:12px}
 .rh{border-top:2px dashed #e5e7eb;margin:10px 0}.rr,.ri{display:flex;justify-content:space-between;gap:10px;padding:3px 0}
 .rt{font-weight:700;font-size:16px}.ri span:first-child{opacity:.55}.ri span:last-child{text-align:right;word-break:break-word}
 /* squelette de chargement */
@@ -131,49 +122,79 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .addbtn .bt-c{position:absolute;inset:0;margin:auto;width:26px;height:26px;opacity:0;transform:scale(.3);transition:all .3s .15s}
 .addbtn.ok{align-self:center;width:56px;padding:0;border-radius:9999px;background:#22c55e;border-color:#22c55e;color:#fff!important;font-size:0}
 .addbtn.ok .bt-c{opacity:1;transform:none}
-/* Choix d'un bureau */
+/* choix d'un bureau */
 .ck8{flex:none;margin-left:auto;width:22px;height:22px;border-radius:9999px;border:2px solid #d1d5db;display:flex;align-items:center;justify-content:center;transition:all .25s}
 .ck8 svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24}
 .peer:checked ~ div{animation:pulse .6s ease-out}
 .peer:checked ~ div .ck8{background:#171717;border-color:#171717;animation:pop .4s}
 .peer:checked ~ div .ck8 svg{animation:draw .35s .1s forwards}
 .petals span.dg{font:700 var(--s) Poppins,sans-serif;opacity:.12}
-/* NEW: tracker de commande */
-.fx-ico.zimou{background:linear-gradient(135deg,#1e3a5f,#2d5a87 40%,#4a90d9)}
-.fx-ico.zimou svg{filter:drop-shadow(0 2px 6px rgba(45,90,135,.4))}
-.track-hero{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;background:linear-gradient(135deg,#e8f0fe 0%,#d4e4fb 50%,#cdddf2 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:18px;box-shadow:0 6px 20px rgba(45,90,135,.12)}
-.track-hero::before{content:"📦";position:absolute;right:10px;bottom:6px;font-size:22px;opacity:.35;animation:floatUp 3s ease-in-out infinite}
-.track-hero h4{font-size:15px;font-weight:700;color:#1a3a5c;margin-bottom:4px;position:relative;z-index:2}
-.track-hero p{font-size:11px;color:#4a7ab0;position:relative;z-index:2}
-.track-status{margin-top:12px;display:flex;align-items:center;gap:8px;position:relative;z-index:2}
-.track-bar{height:6px;border-radius:9999px;background:repeating-linear-gradient(90deg,#22c55e 0,#22c55e 8px,transparent 8px,transparent 16px);animation:sheen 1.2s ease-in-out infinite}
-.track-dot{width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px rgba(34,197,94,.5);animation:blink 1.2s ease-in-out infinite}
-.track-input-wrap{position:relative;margin-top:14px;z-index:2}
-.track-input-wrap svg{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#9ca3af;pointer-events:none}
-.track-input-wrap input{padding-right:30px}
-.fx-track-spinner{width:28px;height:28px;border:3px solid #e5e7eb;border-top-color:#171717;border-radius:50%;animation:spin .8s linear infinite;animation-play-state:paused}
-.fx-track-spinner.running{animation-play-state:running}
-/* NEW: coche sur champs */
-.field-check{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;pointer-events:none}
-.field-check svg{width:100%;height:100%}
-.field-wrap{position:relative}
-/* NEW: animations +/- quantité */
-.qty-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:12px;background:#f3f4f6;border:2px solid transparent;transition:all .2s;cursor:pointer;margin:0 2px}
-.qty-btn:hover{background:#e5e7eb;border-color:#d1d5db}
-.qty-btn:active{transform:scale(.85)!important;border-color:#171717!important}
-.qty-btn.bonk{animation:bump .4s cubic-bezier(.34,1.56,.64,1)}
-/* NEW: emojis en vol */
-.fly-emoji{position:fixed;z-index:500;pointer-events:none;font-size:20px;will-change:transform,opacity}
-/* NEW: validation ripple */
-.ripple{position:absolute;border-radius:50%;background:currentColor;opacity:.3;transform:scale(0);animation:rippleAnim .5s ease-out forwards}
-@keyframes rippleAnim{to{transform:scale(2.5);opacity:0}}
-/* NEW: confetti celebration for order */
-.confetti{position:fixed;z-index:600;pointer-events:none;will-change:transform,opacity}
+
+/* galerie */
+#gal{scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#gal::-webkit-scrollbar{display:none}
+.gimg{flex:none;width:100%;scroll-snap-align:center;aspect-ratio:4/5;object-fit:cover}
+.gd{display:block;width:7px;height:7px;border-radius:9999px;background:rgba(255,255,255,.65);box-shadow:0 0 4px rgba(0,0,0,.35);transition:all .3s}
+.gd.on{width:20px;background:#fff}
+.gal-ar{display:none;position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:9999px;background:rgba(255,255,255,.9);align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+@media(min-width:768px){.gal-ar.on{display:flex}}
+/* telecharger le recu */
+.rc-dl{display:block;width:100%;margin-top:14px;padding:12px;border:2px solid #392E2C;border-radius:14px;background:#fff;font-weight:700;font-size:14px}
+.rc-dl:active{background:#f3f4f6}
+#success #rc-dl{animation:up .6s cubic-bezier(.16,1,.3,1) 1.5s both}
 </style>
 </head>
 <body class="text-gray-800 antialiased min-h-screen flex flex-col font-sans">
 
-<!-- FOOTER -->
+<header id="site-header" class="bg-white shadow-sm py-2 sticky top-0 z-40">
+  <div class="max-w-5xl mx-auto px-4 flex justify-between items-center relative">
+    <button id="menu-btn" type="button" aria-label="Menu" class="p-2 text-eva-burgundy hover:bg-eva-pinkLight rounded-full transition btn-tactile">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <img src="https://ik.imagekit.io/vexaccess/IMG_7235.JPG?updatedAt=1793621876079" alt="Logo Vex Store" class="h-8 w-auto absolute left-1/2 -translate-x-1/2">
+    <button id="cart-btn" onclick="openModal()" aria-label="Cart" class="relative p-2 text-eva-burgundy hover:bg-eva-pinkLight rounded-full transition btn-tactile">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      <span id="cart-count" class="absolute top-0 right-0 bg-gray-900 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center" style="transform:scale(0)">0</span>
+    </button>
+  </div>
+</header>
+
+<main class="flex-grow py-0 md:py-10 px-0 md:px-4">
+  <div class="max-w-4xl mx-auto bg-white md:rounded-2xl md:shadow-sm md:border border-gray-100 overflow-hidden flex flex-col md:flex-row">
+    <div class="fx-up md:w-1/2 bg-gray-50 flex items-center justify-center p-0 md:p-6" style="--d:.15s">
+      <div class="relative w-full overflow-hidden md:rounded-xl md:shadow-md">
+        <div id="gal" class="flex overflow-x-auto snap-x snap-mandatory w-full"></div>
+        <button type="button" id="gal-prev" class="gal-ar" style="left:10px" aria-label="Previous photo"><svg width="18" height="18" fill="none" stroke="#392E2C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button type="button" id="gal-next" class="gal-ar" style="right:10px" aria-label="Next photo"><svg width="18" height="18" fill="none" stroke="#392E2C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div id="gal-dots" class="absolute bottom-3 inset-x-0 flex justify-center gap-1.5"></div>
+      </div>
+    </div>
+    <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
+      <h1 id="title" class="text-3xl md:text-4xl font-bold text-eva-burgundy mb-2">Sudoku Pocket Book</h1>
+      <p class="fx-up text-lg text-gray-500 mb-4" dir="rtl" style="--d:.45s">كتيب السودوكو بحجم صغير 🧩</p>
+      <p id="price" class="fx-up text-2xl font-semibold text-gray-900 mb-6" style="--d:.6s">1200 DA</p>
+      <p class="fx-up text-gray-600 mb-8 leading-relaxed" style="--d:.75s">Train your brain every day with our Sudoku Pocket Book. Ideal for boosting focus and memory.<span dir="rtl" class="block mt-2 text-gray-500">درّب عقلك يوميًا مع كتيب السودوكو بحجم صغير. مثالي لتعزيز التركيز والذاكرة.</span></p>
+      <div class="fx-up mb-6" style="--d:.9s">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Quantity • الكمية</label>
+        <div class="inline-flex items-center border-2 border-gray-200 rounded-lg overflow-hidden">
+          <button onclick="updateDisplayQty(-1)" class="px-5 py-3 bg-gray-50 text-gray-600 hover:bg-gray-100 font-bold text-lg btn-tactile">-</button>
+          <span id="display-qty" class="inline-block px-6 py-3 font-semibold text-lg min-w-[3rem] text-center border-x-2 border-gray-200">1</span>
+          <button onclick="updateDisplayQty(1)" class="px-5 py-3 bg-gray-50 text-gray-600 hover:bg-gray-100 font-bold text-lg btn-tactile">+</button>
+        </div>
+      </div>
+      <div id="cta" class="fx-up flex flex-col gap-3" style="--d:1s">
+        <button onclick="addToCart(this)" class="addbtn w-full bg-eva-pinkLight text-eva-burgundy border border-gray-200 font-bold rounded-xl hover:bg-gray-200 btn-tactile text-lg">Add to cart • أضف إلى السلة<svg class="bt-c" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></button>
+        <button onclick="buyNow()" class="w-full bg-eva-burgundy text-white font-bold py-3.5 rounded-xl hover:bg-eva-burgundy-dark transition shadow-md btn-tactile text-lg">Confirm your order • أكّد طلبك</button>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-4xl mx-auto mt-8 px-2 md:px-0 grid grid-cols-3 gap-2 text-center pb-6">
+    <div class="stagger-item flex flex-col items-center" style="transition-delay:.1s"><div class="w-14 h-14 bg-eva-pinkLight rounded-full flex items-center justify-center text-2xl mb-3">🚚</div><h3 class="font-semibold text-xs md:text-sm leading-tight">Fast delivery across Algeria<span dir="rtl" class="block text-gray-500 mt-0.5">توصيل سريع في كل الجزائر</span></h3></div>
+    <div class="stagger-item flex flex-col items-center" style="transition-delay:.25s"><div class="w-14 h-14 bg-eva-pinkLight rounded-full flex items-center justify-center text-2xl mb-3">💵</div><h3 class="font-semibold text-xs md:text-sm leading-tight">Cash on delivery<span dir="rtl" class="block text-gray-500 mt-0.5">الدفع عند الاستلام</span></h3></div>
+    <div class="stagger-item flex flex-col items-center" style="transition-delay:.4s"><div class="w-14 h-14 bg-eva-pinkLight rounded-full flex items-center justify-center text-2xl mb-3">🧠</div><h3 class="font-semibold text-xs md:text-sm leading-tight">100% Beneficial<span dir="rtl" class="block text-gray-500 mt-0.5">مفيد بنسبة 100%</span></h3></div>
+  </div>
+</main>
+
 <footer class="fx-footer">Website developed by <a data-link="developpeur" target="_blank" rel="noopener noreferrer">LuffyDZ</a></footer>
 
 <!-- Menu -->
@@ -186,8 +207,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     </div>
     <a class="fx-menu-link" style="--i:0" data-link="instagram" target="_blank" rel="noopener noreferrer"><span class="fx-ico" style="background:linear-gradient(45deg,#f9a825,#e1306c 55%,#833ab4)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="#fff" stroke="none"/></svg></span>Our Instagram • إنستغرام</a>
     <a class="fx-menu-link" style="--i:1" data-link="tiktok" target="_blank" rel="noopener noreferrer"><span class="fx-ico" style="background:#111"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.2a3.7 3.7 0 1 1-3.7-3.7"/><path d="M14 4c.3 2.4 1.9 3.9 4.2 4.1"/></svg></span>Our TikTok • تيك توك</a>
-    <!-- NEW: Tracker -->
-    <a class="fx-menu-link" style="--i:2" data-link="track" target="_blank" rel="noopener noreferrer" onclick="openTrackModal()"><span class="fx-ico zimou"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg></span>Track your order • تتبع طلبك</a>
+    <a class="fx-menu-link" style="--i:2" data-link="track" target="_blank" rel="noopener noreferrer"><span class="fx-ico" style="background:#392E2C"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span>Track my order • تتبع طلبي</a>
     <div class="fx-credit" style="--i:3">Website developed by <a data-link="developpeur" target="_blank" rel="noopener noreferrer">LuffyDZ</a></div>
   </nav>
 </div>
@@ -205,7 +225,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
       <div class="relative w-28 h-28 mb-6 mx-auto"><div class="sg" id="sg"></div><svg class="absolute inset-0 w-full h-full" viewBox="0 0 52 52"><circle class="ck-c" cx="26" cy="26" r="24" fill="none" stroke="#22c55e" stroke-width="2"/><path class="ck-p" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 27l7 7 15-15"/></svg></div>
       <h3 class="text-2xl font-bold mb-2">Order confirmed! • تم تأكيد الطلب</h3>
       <p class="text-gray-600 mb-8">Thank you for your trust! We will call you shortly to confirm your order.<span dir="rtl" class="block mt-1">شكرا لثقتكم. سنتصل بكم قريبا لتأكيد الطلب 🧩</span></p>
-      <div id="rc" class="rc hidden"><div class="rc-slot"></div><div class="rc-clip"><div id="rc-paper" class="rc-paper"></div></div></div>
+      <div id="rc" class="rc hidden"><div class="rc-slot"></div><div class="rc-clip"><div id="rc-paper" class="rc-paper"></div></div><button type="button" id="rc-dl" class="rc-dl" onclick="downloadReceipt()">Download receipt • تحميل الوصل</button></div>
       <button onclick="closeModal()" class="bg-eva-burgundy text-white px-10 py-4 rounded-xl font-bold w-full btn-tactile">Back to the store • العودة للمتجر</button>
     </div>
 
@@ -218,34 +238,17 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <form id="checkout-form" novalidate onsubmit="submitOrder(event)" class="space-y-4">
       <div class="flex items-center gap-2 mb-3 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>INFORMATIONS • معلوماتك</div>
       <div class="grid grid-cols-2 gap-3">
-        <div class="field-wrap">
-          <input type="text" id="nom" placeholder="Last name • اللقب" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400 relative pr-12">
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
-        <div class="field-wrap">
-          <input type="text" id="prenom" placeholder="First name • الاسم" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400 relative pr-12">
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
+        <input type="text" id="nom" placeholder="Last name • اللقب" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400">
+        <input type="text" id="prenom" placeholder="First name • الاسم" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400">
       </div>
       <div>
-        <input type="tel" id="telephone" placeholder="0555 70 30 37" maxlength="13" inputmode="numeric" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400 relative pr-12">
-        <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <input type="tel" id="telephone" placeholder="0555 70 30 37" maxlength="13" inputmode="numeric" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400">
         <p class="text-[11px] text-gray-500 mt-1.5 ml-1">Format: 05, 06 or 07 followed by 8 digits • 05 أو 06 أو 07 متبوعة بـ 8 أرقام</p>
       </div>
       <div class="flex items-center gap-2 mb-3 mt-6 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>DESTINATION • الوجهة</div>
       <div class="space-y-3">
-        <div class="field-wrap">
-          <select id="wilaya" onchange="loadCommunes()" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron relative pr-12">
-            <option value="" disabled selected>Wilaya • الولاية</option>
-          </select>
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
-        <div class="field-wrap">
-          <select id="commune" onchange="onCommuneChange()" disabled class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron relative pr-12">
-            <option value="" disabled selected>Municipality • البلدية</option>
-          </select>
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
+        <select id="wilaya" onchange="loadCommunes()" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Wilaya • الولاية</option></select>
+        <select id="commune" onchange="onCommuneChange()" disabled class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron"><option value="" disabled selected>Municipality • البلدية</option></select>
       </div>
       <div class="flex items-center gap-2 mb-3 mt-6 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>DELIVERY • التوصيل</div>
       <div class="space-y-3">
@@ -266,8 +269,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
             <div class="flex justify-between items-center"><span class="font-bold text-gray-900 text-sm">Home delivery • للمنزل</span><span id="home-price" class="font-bold text-sm"></span></div>
             <p class="text-xs text-gray-500 mt-1">Delivered to your door</p>
             <div id="domicile-container" class="hidden mt-3">
-              <input type="text" id="adresse_domicile" placeholder="Your exact address (e.g. Didouche Mourad St.) • عنوانك الكامل" class="w-full p-3 text-sm bg-white border border-gray-200 rounded-xl outline-none placeholder-gray-400 relative pr-12">
-              <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <input type="text" id="adresse_domicile" placeholder="Your exact address (e.g. Didouche Mourad St.) • عنوانك الكامل" class="w-full p-3 text-sm bg-white border border-gray-200 rounded-xl outline-none placeholder-gray-400">
               <p class="text-[11px] text-gray-500 mt-1">Minimum 3 characters required</p>
             </div>
           </div>
@@ -283,169 +285,6 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
   </div>
 </div>
 
-<!-- NEW: Popup tracker -->
-<div id="track-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
-  <div id="bd2" class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeTrackModal()"></div>
-  <div id="track-box" class="relative bg-white w-full md:w-[460px] rounded-3xl p-5 md:p-7 max-h-[90vh] overflow-y-auto shadow-2xl">
-    <div class="flex justify-between items-center mb-5">
-      <h2 class="text-xl font-bold text-eva-burgundy">Track order • تتبع طلبك</h2>
-      <button onclick="closeTrackModal()" aria-label="Close" class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-gray-500 hover:text-black transition btn-tactile"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
-    </div>
-
-    <!-- Track hero section -->
-    <div class="mb-6">
-      <div class="track-hero">
-        <h4>Order Tracking</h4>
-        <p>Enter your order number to track your package</p>
-        <div class="track-status">
-          <div class="track-dot"></div>
-          <span class="text-xs font-semibold text-gray-600">Live tracking active</span>
-        </div>
-      </div>
-    </div>
-
-    <form id="track-form" novalidate onsubmit="searchOrder(event)" class="space-y-4">
-      <div class="field-wrap mb-2">
-        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Order Number • رقم الطلب</label>
-        <div class="relative">
-          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
-          <input type="text" id="track-input" placeholder="e.g. 123456" maxlength="20" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400 focus:border-eva-burgundy focus:ring-2 focus:ring-eva-pinkLight/30">
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
-      </div>
-
-      <!-- Track results area (hidden by default) -->
-      <div id="track-results" class="hidden mt-4 pt-4 border-t border-gray-100">
-        <!-- Loading state -->
-        <div id="track-loading" class="hidden flex-col items-center py-6">
-          <div class="fx-track-spinner" id="track-spinner"></div>
-          <p class="text-xs text-gray-500 mt-3">Searching for your package...</p>
-        </div>
-
-        <!-- Empty state -->
-        <div id="track-empty" class="hidden flex-col items-center py-8 text-center">
-          <div class="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center text-3xl mb-3">📭</div>
-          <p class="text-sm text-gray-500 font-medium">No results found</p>
-          <p class="text-xs text-gray-400 mt-1">Check your order number or contact us</p>
-        </div>
-
-        <!-- Result found -->
-        <div id="track-result" class="hidden flex-col items-center py-4">
-          <div class="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mb-3 animate-bounce">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <p class="text-lg font-bold text-eva-burgundy">Package found! 📦</p>
-          <p class="text-xs text-gray-500 mt-1" id="track-orderno"></p>
-          <!-- Mini tracking timeline -->
-          <div class="mt-4 w-full">
-            <div class="track-bar mb-3"></div>
-            <div class="space-y-2">
-              <div class="flex items-start gap-2.5 text-xs text-gray-600"><span class="font-bold">Ordered</span><span class="ml-auto text-gray-400">📅</span></div>
-              <div class="flex items-start gap-2.5 text-xs text-gray-600"><span class="font-bold">Shipped</span><span class="ml-auto text-gray-400">🚚</span></div>
-              <div class="flex items-start gap-2.5 text-xs text-gray-600"><span class="font-bold">In transit</span><span class="ml-auto text-gray-400">✈️</span></div>
-              <div class="flex items-start gap-2.5 text-xs text-gray-600"><span class="font-bold">Delivered</span><span class="ml-auto text-gray-400">✅</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button type="submit" class="w-full bg-eva-burgundy text-white font-bold py-3.5 rounded-xl hover:bg-eva-burgundy-dark transition btn-tactile">Track now • تتبع الآن</button>
-    </form>
-  </div>
-</div>
-
-<!-- Popup commande -->
-<div id="cart-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
-  <div id="bd" class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
-  <div id="modal-box" class="relative bg-white w-full md:w-[480px] rounded-3xl p-5 md:p-7 max-h-[92vh] overflow-y-auto shadow-2xl">
-    <div class="flex justify-between items-center mb-5">
-      <h2 class="text-xl font-bold text-eva-burgundy">Checkout • إتمام الطلب</h2>
-      <button onclick="closeModal()" aria-label="Close" class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-gray-500 hover:text-black transition btn-tactile"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
-    </div>
-
-    <div id="success" class="hidden flex-col items-center text-center py-4">
-      <div class="relative w-28 h-28 mb-6 mx-auto"><div class="sg" id="sg"></div><svg class="absolute inset-0 w-full h-full" viewBox="0 0 52 52"><circle class="ck-c" cx="26" cy="26" r="24" fill="none" stroke="#22c55e" stroke-width="2"/><path class="ck-p" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 27l7 7 15-15"/></svg></div>
-      <h3 class="text-2xl font-bold mb-2">Order confirmed! • تم تأكيد الطلب</h3>
-      <p class="text-gray-600 mb-8">Thank you for your trust! We will call you shortly to confirm your order.<span dir="rtl" class="block mt-1">شكرا لثقتكم. سنتصل بكم قريبا لتأكيد الطلب 🧩</span></p>
-      <div id="rc" class="rc hidden"><div class="rc-slot"></div><div class="rc-clip"><div id="rc-paper" class="rc-paper"></div></div></div>
-      <button onclick="closeModal()" class="bg-eva-burgundy text-white px-10 py-4 rounded-xl font-bold w-full btn-tactile">Back to the store • العودة للمتجر</button>
-    </div>
-
-    <div id="fp" class="mb-6">
-      <div class="flex justify-between text-[11px] md:text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide"><span id="fp-label">Your progress • تقدمك</span><span id="fp-text" class="inline-block text-eva-burgundy">0/6</span></div>
-      <div id="fp-track"><div id="fp-fill"></div></div>
-    </div>
-    <ul id="cart-items" class="mb-8 space-y-3"></ul>
-
-    <form id="checkout-form" novalidate onsubmit="submitOrder(event)" class="space-y-4">
-      <div class="flex items-center gap-2 mb-3 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>INFORMATIONS • معلوماتك</div>
-      <div class="grid grid-cols-2 gap-3">
-        <div class="field-wrap">
-          <input type="text" id="nom" placeholder="Last name • اللقب" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400 relative pr-12">
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
-        <div class="field-wrap">
-          <input type="text" id="prenom" placeholder="First name • الاسم" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400 relative pr-12">
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
-      </div>
-      <div>
-        <input type="tel" id="telephone" placeholder="0555 70 30 37" maxlength="13" inputmode="numeric" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none placeholder-gray-400 relative pr-12">
-        <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <p class="text-[11px] text-gray-500 mt-1.5 ml-1">Format: 05, 06 or 07 followed by 8 digits • 05 أو 06 أو 07 متبوعة بـ 8 أرقام</p>
-      </div>
-      <div class="flex items-center gap-2 mb-3 mt-6 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>DESTINATION • الوجهة</div>
-      <div class="space-y-3">
-        <div class="field-wrap">
-          <select id="wilaya" onchange="loadCommunes()" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron relative pr-12">
-            <option value="" disabled selected>Wilaya • الولاية</option>
-          </select>
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
-        <div class="field-wrap">
-          <select id="commune" onchange="onCommuneChange()" disabled class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none text-gray-600 appearance-none select-chevron relative pr-12">
-            <option value="" disabled selected>Municipality • البلدية</option>
-          </select>
-          <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        </div>
-      </div>
-      <div class="flex items-center gap-2 mb-3 mt-6 text-xs md:text-sm font-bold uppercase tracking-wider"><div class="w-6 h-px bg-gray-800"></div>DELIVERY • التوصيل</div>
-      <div class="space-y-3">
-        <label class="delivery-option flex items-start gap-4 p-4 border border-gray-200 rounded-xl bg-gray-50" id="label-stopdesk">
-          <input type="radio" name="delivery_type" value="stopdesk" onchange="selectDelivery('stopdesk')" class="mt-1">
-          <div class="flex-1">
-            <span class="font-bold text-gray-900 text-sm">Stopdesk • مكتب</span>
-            <div id="stopdesk-container" class="hidden mt-3">
-              <div id="stopdesk-list" class="space-y-2 max-h-56 overflow-y-auto pr-1"><div class="text-sm text-gray-500 p-2 text-center">Please select a municipality • اختر البلدية</div></div>
-              <input type="hidden" id="stopdesk_val">
-            </div>
-            <p id="stopdesk-hint" class="text-xs text-gray-500 mt-1">Please select a municipality • اختر البلدية</p>
-          </div>
-        </label>
-        <label class="delivery-option flex items-start gap-4 p-4 border border-gray-200 rounded-xl bg-gray-50" id="label-domicile">
-          <input type="radio" name="delivery_type" value="express" onchange="selectDelivery('express')" class="mt-1">
-          <div class="flex-1">
-            <div class="flex justify-between items-center"><span class="font-bold text-gray-900 text-sm">Home delivery • للمنزل</span><span id="home-price" class="font-bold text-sm"></span></div>
-            <p class="text-xs text-gray-500 mt-1">Delivered to your door</p>
-            <div id="domicile-container" class="hidden mt-3">
-              <input type="text" id="adresse_domicile" placeholder="Your exact address (e.g. Didouche Mourad St.) • عنوانك الكامل" class="w-full p-3 text-sm bg-white border border-gray-200 rounded-xl outline-none placeholder-gray-400 relative pr-12">
-              <span class="field-check hidden"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <p class="text-[11px] text-gray-500 mt-1">Minimum 3 characters required</p>
-            </div>
-          </div>
-        </label>
-      </div>
-      <div class="pt-4 mt-6">
-        <div class="flex justify-between text-sm font-medium text-gray-600 mb-2 px-1"><span>Subtotal • المجموع الفرعي</span><span id="sum-sub" class="inline-block">0 DA</span></div>
-        <div class="flex justify-between text-sm font-medium text-gray-600 mb-3 px-1"><span>Delivery • التوصيل</span><span id="sum-ship" class="inline-block font-bold text-gray-900">Choose delivery • اختر التوصيل</span></div>
-        <div class="flex justify-between font-bold text-lg md:text-xl mb-4 px-1 pt-3 border-t border-gray-100"><span>Total • المجموع</span><span id="cart-total" class="inline-block">0 DA</span></div>
-        <button id="submit-btn" type="submit" class="w-full bg-eva-burgundy text-white font-bold py-4 rounded-2xl hover:bg-eva-burgundy-dark transition shadow-lg btn-tactile text-lg">Place order • تأكيد الطلب</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- barre collante mobile -->
 <div id="sbar" class="fixed bottom-0 inset-x-0 z-30 md:hidden flex items-center justify-between gap-3 px-4 pt-3 bg-white/90 backdrop-blur border-t border-gray-200" style="padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))">
   <div><div class="text-[11px] opacity-60">Sudoku Pocket Book</div><div id="sbar-price" class="font-bold text-lg"></div></div>
   <button onclick="buyNow()" class="bg-eva-burgundy text-white font-bold px-6 py-3 rounded-xl btn-tactile">Order now • اطلب الآن</button>
@@ -456,20 +295,23 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 const API_BASE_URL='https://vexback.onrender.com/api';
 const P={name:'Sudoku Pocket Book',price:1200,img:'https://ik.imagekit.io/vexaccess/IMG_7243.jpg'};
 /* TES LIENS : remplis seulement ce qui est entre guillemets (un lien vide est masqué) */
-const LINKS={instagram:"https://www.instagram.com/vex.accessoires",tiktok:"https://www.tiktok.com/@vex.essentials",developpeur:"https://www.instagram.com/luffydz.dev"};
+const LINKS={instagram:"https://www.instagram.com/vex.accessoires",tiktok:"https://www.tiktok.com/@vex.essentials",developpeur:"https://www.instagram.com/luffydz.dev",track:""};
+/* PHOTOS DU PRODUIT : ajoute les liens ici, entre guillemets, separes par des virgules (la premiere = photo principale) */
+const PHOTOS=["https://ik.imagekit.io/vexaccess/IMG_7243.jpg"];
+P.img=PHOTOS[0];
 const WILAYAS=["Adrar","Chlef","Laghouat","Oum El Bouaghi","Batna","Béjaïa","Biskra","Béchar","Blida","Bouira","Tamanrasset","Tébessa","Tlemcen","Tiaret","Tizi Ouzou","Alger","Djelfa","Jijel","Sétif","Saïda","Skikda","Sidi Bel Abbès","Annaba","Guelma","Constantine","Médéa","Mostaganem","M'Sila","Mascara","Ouargla","Oran","El Bayadh","Illizi","Bordj Bou Arreridj","Boumerdès","El Tarf","Tindouf","Tissemsilt","El Oued","Khenchela","Souk Ahras","Tipaza","Mila","Aïn Defla","Naâma","Aïn Témouchent","Ghardaïa","Relizane","Timimoun","Bordj Badji Mokhtar","Ouled Djellal","Béni Abbès","In Salah","In Guezzam","Touggourt","Djanet","El M'Ghair","El Meniaa"];
 const CARRIERS=[["yalidine","Yalidine Express"],["zr express","ZR Express"],["maystro","Maystro Delivery"],["zimou express","Zimou Express"],["partenaire point relais","Partenaire Point Relais"],["noest","Noest Express"],["nord ouest","Noest Express"],["anderson","Anderson Express"],["world express","World Express"],["dhd","DHD Express"],["kazi","Kazi Tour"],["ecotrack","Ecotrack"],["gazelle","Gazelle Express"]];
 /* LOGOS DES BUREAUX : colle l'URL de chaque logo entre les guillemets (vide = icône 📦) */
 const LOGOS={
-   "Yalidine Express":"https://ik.imagekit.io/vexaccess/yalidine?updatedAt=1793874918108",
-  "ZR Express":"https://ik.imagekit.io/vexaccess/ZR%20Express",
-  "Maystro Delivery":"https://ik.imagekit.io/vexaccess/Maystro",
-  "Zimou Express":"https://ik.imagekit.io/vexaccess/Zimou",
+  "Yalidine Express":"https://ik.imagekit.io/vexaccess/1twbrw8xoMWK1h9sdRhKdI1JQBkBqHpggcOytFDY.svg",
+  "ZR Express":"https://ik.imagekit.io/vexaccess/0Q2ELStA5D4OdfncOY3zVvPSUijoLVknT1eEzyTv.svg",
+  "Maystro Delivery":"https://ik.imagekit.io/vexaccess/vOigAOwX95np3YfAl2KHFZTxV4sgsApjFxyHdo1u.svg?updatedAt=1793752741116",
+  "Zimou Express":"https://ik.imagekit.io/vexaccess/kgpDluZg45cjgvWacRcAnV6mEHwgRFG5dmAEB6AB.svg",
   "Partenaire Point Relais":"https://ik.imagekit.io/vexaccess/SWnI0NhKpJSikoaQjf8XgkY2MvTvzeOtYQCMZifn.svg?updatedAt=1793752697235",
-  "Noest Express":"https://ik.imagekit.io/vexaccess/NOEST",
+  "Noest Express":"https://ik.imagekit.io/vexaccess/8zd2kfjvZbrvtUYQFUBpwKPmPK2m0yQvM3ITjYFd.svg",
   "Anderson Express":"https://ik.imagekit.io/vexaccess/401VLgCQ3l7Kw97GnYZTwJlymnm1awY36cOghllI.svg?updatedAt=1793752600971",
-  "World Express":"https://ik.imagekit.io/vexaccess/World",
-  "DHD Express":"https://ik.imagekit.io/vexaccess/DHD",
+  "World Express":"https://ik.imagekit.io/vexaccess/zzgAcMgTGqN8e6A1g0FVV4rSgTu45rNrS3IzIqCH.svg",
+  "DHD Express":"https://ik.imagekit.io/vexaccess/3Wztz7vZNPTnXGSZpC4ew6KaHwX82Tmi2OEcahTz.svg?updatedAt=1793752656620",
   "Kazi Tour":"",
   "Ecotrack":"",
   "Gazelle Express":""
@@ -497,13 +339,7 @@ function showToast(msg,type='success'){
 }
 
 /* ---------- Panier ---------- */
-function updateDisplayQty(d){
-  const btn=d===1?document.querySelector('.qty-minus'):document.querySelector('.qty-plus');
-  btn.classList.add('bonk');
-  setTimeout(()=>btn.classList.remove('bonk'),400);
-  currentQty=Math.max(1,currentQty+d);
-  const n=$('#display-qty');n.textContent=currentQty;retrig(n,'pop')
-}
+function updateDisplayQty(d){currentQty=Math.max(1,currentQty+d);const n=$('#display-qty');n.textContent=currentQty;retrig(n,'pop')}
 function updateCartUI(){
   const list=$('#cart-items');let n=0,t=0;list.innerHTML='';
   cart.forEach((it,i)=>{
@@ -515,50 +351,25 @@ function updateCartUI(){
     +'<div class="flex justify-between items-end mt-2"><div class="flex items-center bg-gray-50 rounded-xl border border-gray-200 overflow-hidden h-9"><button type="button" onclick="changeItemQty('+i+',-1)" class="px-3 h-full text-gray-600 hover:bg-gray-200 btn-tactile">-</button><span class="px-2 font-bold text-sm min-w-[1.5rem] text-center">'+it.qty+'</span><button type="button" onclick="changeItemQty('+i+',1)" class="px-3 h-full text-gray-600 hover:bg-gray-200 btn-tactile">+</button></div><div class="text-right leading-none"><span class="font-bold text-lg">'+P.price*it.qty+'</span><br><span class="text-[10px] font-bold uppercase">DA</span></div></div></div>';
     list.appendChild(li);
   });
-  // Replace +/- with animated buttons
-  list.querySelectorAll('button[onclick^="changeItemQty"]').forEach(b=>{
-    const sign=b.textContent==='-'?'−':'+';
-    b.textContent=sign;
-    if(sign==='+'){b.classList.add('qty-plus')}else{b.classList.add('qty-minus')}
-  });
   if(!n)list.innerHTML='<li class="text-center text-gray-500 py-6 text-sm font-medium">Your cart is empty • السلة فارغة</li>';
   const b=$('#cart-count'),old=b.textContent;b.textContent=n;b.style.transform=n?'scale(1)':'scale(0)';
   if(n&&String(n)!==old)retrig(b,'bump');
   updateSummary();
 }
-function changeItemQty(i,d){
-  // bonk animation on +/- click
-  const btn=d===1?document.querySelector('#cart-items button[onclick^="changeItemQty"]:last-of-type'):document.querySelectorAll('#cart-items button[onclick^="changeItemQty"]')[i]?.closest('.flex')?.querySelector('button[onclick^="changeItemQty"]');
-  // simpler: find buttons inside cart rows
-  const btns=$$('#cart-items button[onclick^="changeItemQty"]');
-  const idx=btns.indexOf('btn'+'?') ;
-  // Just trigger animation on corresponding +/- pair
-  if(d===1){retrig(btns[btns.length-1],'bump')}else{retrig(btns[0],'bump')}
-  cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal()
-}
+function changeItemQty(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal()}
 function removeFromCart(i,btn){
   const row=btn.closest('li');if(row)row.classList.add('item-out');
-  setTimeout(()=>{
-    cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal();
-    flyEmojiAway(P.img);
-  },300);
+  setTimeout(()=>{cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal()},300);
 }
-function flyEmojiAway(src){
+function flyToCart(from){
+  const c=$('#cart-btn');retrig(c,'wiggle');
   if(reduce)return;
-  const imgsrc=src||P.img;
-  const products=['🧩','🧠','✏️','🔢','💡','🎯','🚀','⭐','✨','💫'];
-  const count=Math.min(products.length,10);
-  for(let i=0;i<count;i++){
-    const e=document.createElement('div');
-    e.className='fly-emoji';e.textContent=products[i];
-    e.style.cssText='left:'+(50+Math.random()*30)+'%;top:'+(45+Math.random()*10)+'%;font-size:'+(16+Math.random()*16)+'px;--dx:'+(Math.random()*240-120).toFixed(0)+'px;--dy:'+(Math.random()*200+40).toFixed(0)+'px;--rot:'+(Math.random()*720-360).toFixed(0)+'deg;animation:flyOut '+(900+Math.random()*700)+'ms cubic-bezier(.25,.8,.35,1) forwards';
-    document.body.appendChild(e);
-    e.animate([
-      {transform:'translate(0,0) scale(1) rotate(0)',opacity:1},
-      {transform:'translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.2) rotate(var(--rot))',opacity:1,offset:.5},
-      {transform:'translate(calc(-50% + var(--dx)*1.3),calc(-50% + var(--dy)*1.1 - 80px)) scale(.4) rotate(var(--rot))',opacity:0}
-    ],{duration:1200+Math.random()*800}).onfinish=()=>e.remove();
-  }
+  const a=from.getBoundingClientRect(),to=c.getBoundingClientRect(),S=64;
+  const sx=a.left+a.width/2-S/2,sy=a.top+a.height/2-S/2,dx=to.left+to.width/2-(sx+S/2),dy=to.top+to.height/2-(sy+S/2);
+  const f=document.createElement('img');f.src=P.img;
+  f.style.cssText='position:fixed;left:'+sx+'px;top:'+sy+'px;width:'+S+'px;height:'+S+'px;object-fit:cover;border-radius:50%;border:3px solid #fff;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:400;pointer-events:none';
+  document.body.appendChild(f);
+  f.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+dx*.4+'px,'+(dy*.4-80)+'px) scale(.8)',opacity:1,offset:.4},{transform:'translate('+dx+'px,'+dy+'px) scale(.2)',opacity:.5}],{duration:850,easing:'ease-in-out'}).onfinish=()=>f.remove();
 }
 function addToCart(btn){
   const ex=cart[0];
@@ -606,8 +417,7 @@ function resetCheckout(){
   $('#stopdesk-container').classList.add('hidden');$('#domicile-container').classList.add('hidden');$('#stopdesk-hint').classList.remove('hidden');
   $('#commune').innerHTML='<option value="" disabled selected>Municipality • البلدية</option>';$('#commune').disabled=true;
   $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;homeStatus='';
-  $('#telephone').classList.remove('is-valid','is-invalid');updateProgress();updateSummary();
-  hideFieldChecks();
+  $('#telephone').classList.remove('is-valid','is-invalid');updateProgress();updateSummary();loadPrefill();
 }
 function closeModal(){
   const m=$('#cart-modal');if(m.classList.contains('hidden')||m.classList.contains('closing'))return;
@@ -618,7 +428,7 @@ function closeModal(){
   },320);
 }
 
-/* ---------- Progression + champs manquants + coche ---------- */
+/* ---------- Progression + champs manquants ---------- */
 function checks(){
   const v=id=>$('#'+id).value.trim(),t=($('input[name="delivery_type"]:checked')||{}).value;
   return [
@@ -629,36 +439,14 @@ function checks(){
      t?[t==='express'?$('#adresse_domicile'):$('#stopdesk-list')]:[$('#label-stopdesk'),$('#label-domicile')]]
   ];
 }
+let lastDone=-1;
 function updateProgress(){
   const c=checks(),n=c.filter(x=>x[0]).length;
   $('#fp-fill').style.width=(n/6*100)+'%';$('#fp-text').textContent=n+'/6';
   $('#fp-label').textContent=n===6?'Ready to confirm • جاهز للتأكيد 🧩':'Your progress • تقدمك';
   $('#fp').classList.toggle('is-done',n===6);$('#submit-btn').classList.toggle('ready',n===6);
   if(lastDone!==-1&&n!==lastDone)retrig($('#fp-text'),'pop');lastDone=n;
-  updateFieldChecks();
 }
-function updateFieldChecks(){
-  const fields=['#nom','#prenom','#telephone','#wilaya','#commune','#adresse_domicile'];
-  fields.forEach(f=>{
-    const el=$(f);
-    const check=$(f).parentElement?.querySelector('.field-check');
-    if(!check)return;
-    const val=el.value.trim();
-    const valid=PHONE_RE.test(phone())||val.length>=3||!!el.tagName.includes('SELECT')&&el.value;
-    check.classList.toggle('hidden',!valid);
-  });
-  // Special case for stopdesk value
-  const stopVal=$('#stopdesk_val').value;
-  const stopCheck=$('#stopdesk-list').parentElement?.querySelector('.field-check');
-  if(stopCheck&&stopVal){stopCheck.classList.remove('hidden')}
-  else if(stopCheck){stopCheck.classList.add('hidden')}
-  // domicile address
-  const addr=$('#adresse_domicile');
-  const addrCheck=addr.parentElement?.querySelector('.field-check');
-  if(addrCheck&&addr.value.trim().length>=3)addrCheck.classList.remove('hidden');
-  else if(addrCheck)addrCheck.classList.add('hidden');
-}
-function hideFieldChecks(){$$('.field-check').forEach(c=>c.classList.add('hidden'))}
 function flashMissing(){
   const els=checks().filter(x=>!x[0]).flatMap(x=>x[1]);if(!els.length)return;
   els.forEach(el=>{el.classList.add('miss-keep');retrig(el,'miss');setTimeout(()=>el.classList.remove('miss'),1500)});
@@ -677,7 +465,6 @@ ph.addEventListener('input',()=>{
   const v=phone(),ok=PHONE_RE.test(v),bad=(v.length>=2&&!/^0[567]/.test(v))||(v.length===10&&!ok),was=ph.classList.contains('is-invalid');
   ph.classList.toggle('is-valid',ok);ph.classList.toggle('is-invalid',bad);
   if(bad&&!was)retrig(ph,'shake');
-  updateFieldChecks();
 });
 
 /* ---------- Wilaya / commune / livraison ---------- */
@@ -703,9 +490,9 @@ function onCommuneChange(){
     if($('#commune').value!==id)return;
     if(d&&d.success){homePrice=Number(d.price);homeStatus=''}
     else{homePrice=null;homeStatus=!d&&s===404?'Server not updated (404)':d&&d.error==='no home option'?('No home option: '+((d.options&&d.options.length?d.options.join(' | '):d.sample)||'empty reply')).slice(0,110):'Error '+((d&&d.status)||s)}
-    updateSummary();updateFieldChecks();
+    updateSummary();
   }).catch(()=>{if($('#commune').value===id){homeStatus='Network error';updateSummary()}});
-  fetch(API_BASE_URL+'/delivery-prices/'+id).then(r=>r.json()).then(d=>{cachedPricing=d.data||d;populateStopdesks();updateSummary();updateFieldChecks()})
+  fetch(API_BASE_URL+'/delivery-prices/'+id).then(r=>r.json()).then(d=>{cachedPricing=d.data||d;populateStopdesks();updateSummary()})
   .catch(()=>{$('#stopdesk-list').innerHTML='<div class="text-sm text-red-500 p-3 text-center">Loading error</div>';$('#stopdesk-hint').textContent='Network error'});
 }
 function selectDelivery(type){
@@ -714,7 +501,6 @@ function selectDelivery(type){
   $('#stopdesk-container').classList.toggle('hidden',!s);$('#stopdesk-hint').classList.toggle('hidden',s);
   $('#domicile-container').classList.toggle('hidden',s);
   if(!s)$('#stopdesk_val').value='';
-  updateFieldChecks();updateSummary();
 }
 function populateStopdesks(){
   const box=$('#stopdesk-list'),hint=$('#stopdesk-hint'),cid=String($('#commune').value);
@@ -739,10 +525,10 @@ function populateStopdesks(){
 /* ---------- Envoi ---------- */
 function petalBurst(){
   if(reduce)return;
-  const em=['🧩','🧩','🧠','✨','🔢','✏️','💡','🎯','🚀','⭐'];
-  for(let i=0;i<25;i++){
+  const em=['🧩','🧩','🧠','✨','🔢','✏️','💡','🎯'],cx=innerWidth/2,cy=innerHeight*.4;
+  for(let i=0;i<30;i++){
     const s=document.createElement('span');s.textContent=em[i%em.length];
-    s.style.cssText='position:fixed;left:'+(innerWidth/2)+'px;top:'+(innerHeight*.35)+'px;font-size:'+(14+Math.random()*16)+'px;z-index:500;pointer-events:none';
+    s.style.cssText='position:fixed;left:'+cx+'px;top:'+cy+'px;font-size:'+(14+Math.random()*16)+'px;z-index:500;pointer-events:none';
     document.body.appendChild(s);
     const a=Math.random()*Math.PI*2,d=90+Math.random()*190,dx=Math.cos(a)*d,dy=Math.sin(a)*d-80,r=Math.random()*360;
     s.animate([{transform:'translate(-50%,-50%) scale(.3) rotate(0)',opacity:1},{transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) scale(1) rotate('+r+'deg)',opacity:1,offset:.45},{transform:'translate(calc(-50% + '+dx*1.15+'px),calc(-50% + '+(dy+260+Math.random()*160)+'px)) scale(.8) rotate('+(r+360)+'deg)',opacity:0}],{duration:1700+Math.random()*900,easing:'cubic-bezier(.2,.7,.3,1)',fill:'forwards'}).onfinish=()=>s.remove();
@@ -769,80 +555,23 @@ function submitOrder(e){
   .then(r=>r.json()).then(d=>{
     if(!d.success){showToast('Error: '+(d.message||'order refused'),'error');return}
     cart=[];save();updateCartUI();
+    try{localStorage.setItem(PREF,JSON.stringify({nom:orderData.nom,prenom:orderData.prenom,tel:orderData.telephone}))}catch(e){}
     form.classList.add('hidden');$('#cart-items').classList.add('hidden');$('#fp').classList.add('hidden');
     const s=$('#success');s.classList.remove('hidden');s.classList.add('flex');
     $('#modal-box').scrollTop=0;startGrid();setTimeout(petalBurst,2300);setTimeout(()=>showReceipt(rc,d),3000);
-    launchConfetti();
   }).catch(()=>showToast('Unable to reach the server.','error'))
   .finally(()=>{btn.textContent=txt;btn.disabled=false});
 }
-
-/* NEW: Confetti for order confirmation */
-function launchConfetti(){
-  if(reduce)return;
-  const colors=['#22c55e','#f97316','#8b5cf6','#06b6d4','#ec4899','#e11d48'];
-  const shapes=['10px','14px','18px'];
-  for(let i=0;i<60;i++){
-    const c=document.createElement('div');
-    c.className='confetti';
-    const sz=shapes[Math.floor(Math.random()*shapes.length)];
-    c.style.cssText='left:'+(Math.random()*100)+'%;top:-'+sz+'px;width:'+sz+';height:'+sz+';background:'+colors[Math.floor(Math.random()*colors.length)]+';border-radius:'+(Math.random()>.5?'50%':'2px')+';transform:rotate('+Math.random()*720+'deg);opacity:1;z-index:600;animation:confettiFall '+(1500+Math.random()*1500)+'ms cubic-bezier(.3,.7,.3,1) forwards';
-    document.body.appendChild(c);
-    c.animate([
-      {transform:'translate(0,0) rotate(0) scale(1)',opacity:1},
-      {transform:'translate('+Math.random()*400+'px,'+(window.innerHeight+50)+'px) rotate('+Math.random()*720+'deg) scale(1.2)',opacity:0}
-    ],{duration:1800+Math.random()*1200}).onfinish=()=>c.remove();
-  }
-}
-/* keyframes confettiFall */
-(function(){const st=document.createElement('style');st.textContent='@keyframes confettiFall{0%{transform:translate(0,0) rotate(0) scale(1);opacity:1}100%{transform:translate(var(--cx),100vh) rotate(var(--cr)) scale(1.3);opacity:0}}';document.head.appendChild(st)})();
 
 /* ---------- Menu ---------- */
 $$('[data-link]').forEach(a=>{const u=LINKS[a.dataset.link];if(u)a.href=u;else if(a.classList.contains('fx-menu-link'))a.style.display='none'});
 const menu=$('#side-menu'),mbtn=$('#menu-btn');
 function menuToggle(o){menu.classList.toggle('is-open',o);menu.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':''}
 mbtn.onclick=()=>menuToggle(true);$('.fx-x').onclick=()=>menuToggle(false);$('.fx-menu-bd').onclick=()=>menuToggle(false);
-addEventListener('keydown',e=>{if(e.key==='Escape'){menuToggle(false);closeModal()}if(e.key==='Escape'&&!$('#cart-modal').classList.contains('hidden'))closeTrackModal()});
+addEventListener('keydown',e=>{if(e.key==='Escape'){menuToggle(false);closeModal()}});
 let x0=null;const pn=$('.fx-menu-panel');
 pn.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
 pn.addEventListener('touchend',e=>{if(x0!==null&&e.changedTouches[0].clientX-x0<-60)menuToggle(false);x0=null},{passive:true});
-
-/* NEW: Track modal */
-function openTrackModal(){
-  const m=$('#track-modal');if(!m.classList.contains('hidden'))return;
-  updateFieldChecks();
-  m.classList.remove('hidden','closing');m.classList.add('flex');
-  document.body.style.overflow='hidden';
-  setTimeout(()=>$('#track-input').focus(),400);
-}
-function closeTrackModal(){
-  const m=$('#track-modal');if(m.classList.contains('hidden')||m.classList.contains('closing'))return;
-  m.classList.add('closing');
-  setTimeout(()=>{
-    m.classList.add('hidden');m.classList.remove('flex','closing');document.body.style.overflow='';
-    $('#track-results').classList.add('hidden');
-  },320);
-}
-function searchOrder(e){
-  e.preventDefault();
-  const val=$('#track-input').value.trim();
-  if(!val){showToast('Please enter an order number','error');return}
-  const res=$('#track-results');res.classList.remove('hidden');
-  res.innerHTML='';
-  $('#track-loading').classList.remove('hidden');$('#track-empty').classList.add('hidden');$('#track-result').classList.add('hidden');
-  const spinner=$('#track-spinner');spinner.classList.add('running');
-  // Simulate search (no real backend endpoint for tracking)
-  setTimeout(()=>{
-    spinner.classList.remove('running');
-    // Show loading then simulate result
-    setTimeout(()=>{
-      $('#track-loading').classList.add('hidden');$('#track-result').classList.remove('hidden');
-      $('#track-orderno').textContent='Order #'+esc(val.toUpperCase())
-    },800);
-  },600);
-}
-// Handle Enter key in track input
-$('#track-input').addEventListener('keydown',e=>{if(e.key==='Enter')searchOrder(e)});
 
 /* ---------- Animations d'entrée ---------- */
 const h1=$('#title');h1.innerHTML=h1.textContent.split(' ').map((w,i)=>'<span class="fx-w" style="--k:'+i+'">'+esc(w)+'</span>').join(' ');
@@ -865,7 +594,9 @@ function followScroll(ms){
   const b=$('#modal-box'),from=b.scrollTop,t0=performance.now();
   (function f(t){const p=Math.min((t-t0)/ms,1),e=1-Math.pow(1-p,2),max=b.scrollHeight-b.clientHeight;b.scrollTop=from+(max-from)*e;if(p<1)requestAnimationFrame(f)})(t0);
 }
+let lastRc=null;
 function showReceipt(m,d){
+  lastRc={m,d};
   const tr=d.tracking&&d.tracking!=='En attente'?d.tracking:'';
   $('#rc-paper').innerHTML='<div class="rb">Vex Store 🧩</div><div class="rs">Order receipt • وصل الطلب</div><div class="rs">'+esc(m.date)+(d.orderId?' • #'+esc(d.orderId):'')+'</div><div class="rh"></div>'
   +m.items.map(i=>'<div class="rr"><span><b>'+i.qty+'×</b> '+esc(i.name)+'</span><span>'+P.price*i.qty+' DA</span></div>').join('')
@@ -878,6 +609,85 @@ function showReceipt(m,d){
 /* barre collante mobile */
 const sbar=$('#sbar');$('#sbar-price').textContent=P.price+' DA';
 new IntersectionObserver(([e])=>sbar.classList.toggle('show',!e.isIntersecting&&e.boundingClientRect.top<0)).observe($('#cta'));
+/* ---------- Galerie photos ---------- */
+(function(){
+  const g=$('#gal'),dots=$('#gal-dots'),pv=$('#gal-prev'),nx=$('#gal-next');
+  g.innerHTML=PHOTOS.map((u,i)=>'<img class="gimg" src="'+esc(u)+'" alt="Sudoku Pocket Book '+(i+1)+'"'+(i?' loading="lazy"':' fetchpriority="high"')+'>').join('');
+  if(PHOTOS.length<2)return;
+  dots.innerHTML=PHOTOS.map((_,i)=>'<i class="gd'+(i?'':' on')+'"></i>').join('');
+  g.addEventListener('scroll',()=>{const i=Math.round(g.scrollLeft/g.clientWidth);dots.querySelectorAll('.gd').forEach((d,k)=>d.classList.toggle('on',k===i))},{passive:true});
+  pv.classList.add('on');nx.classList.add('on');
+  pv.onclick=()=>g.scrollBy({left:-g.clientWidth,behavior:'smooth'});
+  nx.onclick=()=>g.scrollBy({left:g.clientWidth,behavior:'smooth'});
+})();
+/* ---------- Champs pre-remplis ---------- */
+const PREF='vex_prefill';
+function loadPrefill(){
+  try{const o=JSON.parse(localStorage.getItem(PREF)||'null');if(!o)return;
+    $('#nom').value=o.nom||'';$('#prenom').value=o.prenom||'';$('#telephone').value=fmt(o.tel||'');
+    $('#telephone').dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}
+}
+/* ---------- Recu en image ---------- */
+async function receiptPNG(m,d){
+  try{await document.fonts.load('600 20px Poppins');await document.fonts.load('700 20px Poppins')}catch(e){}
+  const W=600,S=2,PD=52,FF='Poppins, Cairo, sans-serif',tr=d.tracking&&d.tracking!=='En attente'?d.tracking:'';
+  const lay=c=>{
+    let y=104;
+    const f=(w,sz)=>{c.font=w+' '+sz+'px '+FF};
+    const t=(s,x,al,col,w,sz)=>{f(w,sz);c.fillStyle=col;c.textAlign=al;c.fillText(s,x,y)};
+    const hr=()=>{c.strokeStyle='#e5e7eb';c.lineWidth=2;c.setLineDash([8,6]);c.beginPath();c.moveTo(PD,y);c.lineTo(W-PD,y);c.stroke();c.setLineDash([]);y+=32};
+    const wrap=(s,max,w,sz)=>{f(w,sz);const out=[];let l='';String(s).split(' ').forEach(x=>{const n=l?l+' '+x:x;if(c.measureText(n).width>max&&l){out.push(l);l=x}else l=n});out.push(l);return out};
+    t('Vex Store 🧩',W/2,'center','#392E2C',700,40);
+    y+=34;t('Order receipt • وصل الطلب',W/2,'center','#6b7280',500,21);
+    y+=30;t(m.date+(d.orderId?'  •  #'+d.orderId:''),W/2,'center','#9ca3af',400,18);
+    y+=30;hr();
+    m.items.forEach(i=>{
+      wrap(i.qty+'× '+i.name,340,600,22).forEach((l,k)=>{if(k)y+=28;t(l,PD,'left','#392E2C',600,22);if(!k)t(P.price*i.qty+' DA',W-PD,'right','#392E2C',600,22)});
+      y+=40;
+    });
+    y-=16;hr();
+    [['Subtotal',m.sub],['Delivery',m.ship]].forEach(r=>{t(r[0],PD,'left','#6b7280',500,20);t(r[1],W-PD,'right','#392E2C',600,20);y+=36});
+    t('TOTAL',PD,'left','#392E2C',700,26);t(m.total,W-PD,'right','#392E2C',700,28);
+    y+=30;hr();
+    m.info.filter(r=>r[1]).forEach(r=>{
+      t(r[0],PD,'left','#9ca3af',500,18);
+      wrap(r[1],330,500,19).forEach((l,k)=>{if(k)y+=26;t(l,W-PD,'right','#392E2C',500,19)});
+      y+=36;
+    });
+    y-=4;hr();
+    if(tr){t('Tracking',W/2,'center','#6b7280',500,19);y+=40;t(tr,W/2,'center','#392E2C',700,30);y+=50;hr()}
+    t('We will call you shortly to confirm',W/2,'center','#392E2C',600,19);
+    y+=32;t('سنتصل بكم قريبا لتأكيد الطلب',W/2,'center','#392E2C',600,19);
+    return y+64;
+  };
+  const H=Math.ceil(lay(document.createElement('canvas').getContext('2d')));
+  const cv=document.createElement('canvas');cv.width=W*S;cv.height=H*S;
+  const c=cv.getContext('2d');c.scale(S,S);
+  c.fillStyle='#FBFAF8';c.fillRect(0,0,W,H);
+  c.save();c.shadowColor='rgba(57,46,44,.18)';c.shadowBlur=18;c.shadowOffsetY=6;c.fillStyle='#fff';
+  c.beginPath();c.moveTo(22,22);c.lineTo(W-22,22);c.lineTo(W-22,H-40);
+  const tw=(W-44)/28;for(let i=1;i<=28;i++)c.lineTo(W-22-i*tw,i%2?H-22:H-40);
+  c.closePath();c.fill();c.restore();
+  c.fillStyle='#392E2C';c.fillRect(22,22,W-44,10);
+  lay(c);
+  return new Promise(res=>cv.toBlob(res,'image/png'));
+}
+async function downloadReceipt(){
+  if(!lastRc)return;
+  const blob=await receiptPNG(lastRc.m,lastRc.d);if(!blob)return;
+  const name='receipt-vex-'+Date.now()+'.png',ua=navigator.userAgent;
+  const ios=/iP(hone|ad|od)/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const file=new File([blob],name,{type:'image/png'});
+  if(ios&&navigator.canShare&&navigator.canShare({files:[file]})){try{await navigator.share({files:[file],title:'Vex Store receipt'})}catch(e){}return}
+  const url=URL.createObjectURL(blob);
+  if(/FBAN|FBAV|Instagram/.test(ua)){
+    const o=document.createElement('div');o.className='fixed inset-0 z-[700] bg-black/70 flex flex-col items-center justify-center p-4 gap-3';
+    o.innerHTML='<p class="text-white text-sm text-center">Press and hold the receipt, then Save image<br>اضغط مطولا للحفظ</p><img src="'+url+'" class="max-h-[72vh] rounded-xl"><button class="bg-white rounded-xl px-8 py-2 font-bold">Close</button>';
+    o.querySelector('button').onclick=()=>{o.remove();URL.revokeObjectURL(url)};document.body.appendChild(o);return;
+  }
+  const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);
+}
+loadPrefill();
 updateCartUI();
 </script>
 </body>
