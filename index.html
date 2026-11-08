@@ -153,13 +153,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 @keyframes tld{0%{opacity:0;transform:scale(.6)}30%{opacity:.85;transform:scale(1)}60%{opacity:.85;transform:scale(1.05)}100%{opacity:0;transform:scale(1.2)}}
 @keyframes tlc{to{opacity:1;filter:none;transform:none}}
 
-/* ===== 3. Grille de sudoku en fond ===== */
-.bg9{position:fixed;inset:0;z-index:-2;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden}
-.bg9-in{width:min(92vw,520px);aspect-ratio:1/1;display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);border:1px solid rgba(57,46,44,.08);border-radius:16px;overflow:hidden}
-.bg9 i{border-right:1px solid rgba(57,46,44,.07);border-bottom:1px solid rgba(57,46,44,.07);display:flex;align-items:center;justify-content:center;font:600 clamp(11px,2.5vw,17px) Poppins,sans-serif;font-style:normal;color:#392E2C;opacity:0;transform:scale(.6);transition:opacity .6s ease,transform .6s cubic-bezier(.34,1.56,.64,1)}
-.bg9 i:nth-child(3n){border-right-color:rgba(57,46,44,.13)}
-.bg9 i:nth-child(n+19):nth-child(-n+27),.bg9 i:nth-child(n+46):nth-child(-n+54){border-bottom-color:rgba(57,46,44,.13)}
-.bg9 i.on{opacity:.1;transform:none}
+/* ===== 3. Grille de sudoku en fond (retirée) ===== */
 
 /* ===== 9. Reflet sur les boutons ===== */
 .btn-sheen{position:relative;overflow:hidden;isolation:isolate}
@@ -200,11 +194,82 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 .fx-footer a{text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1.5px;padding-bottom:1px;transition:background-size .32s cubic-bezier(.16,1,.3,1)}
 .fx-footer a:hover{background-size:100% 1.5px}
 
+/* ===== 31. Ripple d'encre ===== */
+.ink-ripple{position:absolute;border-radius:9999px;background:currentColor;opacity:.22;pointer-events:none;z-index:0;transform:translate(-50%,-50%) scale(0);animation:inkSpread .6s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes inkSpread{60%{opacity:.16}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+
+/* ===== 33. Toast ticket de caisse ===== */
+.toast-ticket{position:relative;display:flex;align-items:center;gap:10px;width:100%;padding:13px 16px 15px;background:#fff;border:1px solid #e8e3de;border-left:5px solid #22c55e;border-radius:4px;box-shadow:0 14px 34px -14px rgba(0,0,0,.35);color:#392E2C;font-weight:600;font-size:14px;line-height:1.25;overflow:hidden;clip-path:polygon(0 0,100% 0,100% calc(100% - 5px),92% 100%,84% calc(100% - 5px),76% 100%,68% calc(100% - 5px),60% 100%,52% calc(100% - 5px),44% 100%,36% calc(100% - 5px),28% 100%,20% calc(100% - 5px),12% 100%,4% calc(100% - 5px),0 100%)}
+.toast-ticket.bad{border-left-color:#ef4444}
+.toast-ticket .tt-ico{font-size:18px;flex:none}
+.toast-ticket .tt-txt{flex:1}
+.toast-ticket .tt-bar{position:absolute;top:0;left:0;right:0;height:3px;background:#22c55e;transform-origin:left;animation:toastBar 3s linear forwards}
+.toast-ticket.bad .tt-bar{background:#ef4444}
+@keyframes toastBar{to{transform:scaleX(0)}}
+
+/* ===== 34. Erreur coup de crayon ===== */
+.scribble{position:absolute;left:.5rem;right:.5rem;bottom:3px;height:8px;pointer-events:none;z-index:3;overflow:visible}
+.scribble path{fill:none;stroke:#ef4444;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:100;stroke-dashoffset:100;vector-effect:non-scaling-stroke}
+
+/* ===== 35. Bulle Minimum 1 ===== */
+.qty-bubble{position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%) translateY(5px);background:#171717;color:#fff;font-size:11px;font-weight:700;padding:6px 10px;border-radius:9px;white-space:nowrap;opacity:0;transition:opacity .2s,transform .2s cubic-bezier(.16,1,.3,1);pointer-events:none;z-index:60}
+.qty-bubble.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.qty-bubble::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#171717}
+
+/* ===== 37. Mini-grille de chargement ===== */
+.mini-grid{position:absolute;right:2.7rem;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(3,5px);grid-template-rows:repeat(3,5px);gap:2px;z-index:2;pointer-events:none}
+.mini-grid i{width:5px;height:5px;border-radius:1.5px;background:#171717;opacity:.12;animation:miniFill 1.1s ease-in-out infinite}
+.mini-grid i:nth-child(2){animation-delay:.07s}.mini-grid i:nth-child(3){animation-delay:.14s}
+.mini-grid i:nth-child(4){animation-delay:.21s}.mini-grid i:nth-child(5){animation-delay:.28s}
+.mini-grid i:nth-child(6){animation-delay:.35s}.mini-grid i:nth-child(7){animation-delay:.42s}
+.mini-grid i:nth-child(8){animation-delay:.49s}.mini-grid i:nth-child(9){animation-delay:.56s}
+@keyframes miniFill{0%,100%{opacity:.12;transform:scale(.85)}45%{opacity:.6;transform:scale(1)}}
+
+/* ===== 38. Anneau de progression du bouton ===== */
+.sub-fx{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:700;line-height:1}
+.sub-pct{font-size:13px;font-weight:800;min-width:34px;text-align:left;font-variant-numeric:tabular-nums}
+.sub-ring{width:28px;height:28px;transform:rotate(-90deg);flex:none}
+.sub-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
+.sub-track{stroke:rgba(255,255,255,.25)}
+.sub-bar{stroke:#fff;stroke-dasharray:94.25;stroke-dashoffset:94.25;transition:stroke-dashoffset .15s linear}
+#submit-btn.sub-ok{background:#22c55e!important;border-color:#22c55e!important}
+.sub-check{width:30px;height:30px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;animation:draw .35s .05s forwards}
+
+/* ===== 39. Pièce DA qui tourne ===== */
+.da-coin{position:fixed;display:flex;align-items:center;justify-content:center;width:27px;height:27px;border-radius:9999px;background:linear-gradient(145deg,#f9df8a,#c99a2e);color:#5a3e0b;font:700 9px Poppins,sans-serif;border:1px solid #b8860b;box-shadow:0 3px 8px rgba(0,0,0,.25),inset 0 0 0 2px rgba(255,255,255,.35);pointer-events:none;z-index:520;backface-visibility:visible}
+
+/* ===== 41. Soulignement crayon du menu ===== */
+.fx-menu-link{position:relative}
+.fx-menu-link::after{content:"";position:absolute;left:56px;right:20px;bottom:7px;height:6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='6' viewBox='0 0 120 6'%3E%3Cpath d='M1 4c8-4 12 3 20 0s12-3 20 0 12 3 20 0 12-3 20 0 12 3 20 0' fill='none' stroke='%23392E2C' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left center/100% 6px;clip-path:inset(0 100% 0 0);opacity:.75;pointer-events:none;transition:clip-path .35s cubic-bezier(.16,1,.3,1)}
+@media(hover:hover){.fx-menu-link:hover::after{clip-path:inset(0 0 0 0)}}
+
+/* ===== 43. Loader première visite ===== */
+.vex-loader{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#FBFAF8;transition:opacity .5s ease,visibility .5s}
+.vex-loader.out{opacity:0;visibility:hidden}
+.vl-grid{display:grid;grid-template-columns:repeat(3,34px);grid-template-rows:repeat(3,34px);gap:6px}
+.vl-grid i{display:flex;align-items:center;justify-content:center;border:2px solid #392E2C;border-radius:9px;font:700 18px Poppins,sans-serif;font-style:normal;color:#392E2C;opacity:0;transform:scale(.6);animation:vlIn .4s cubic-bezier(.34,1.56,.64,1) calc(var(--i)*80ms + 80ms) forwards}
+@keyframes vlIn{to{opacity:1;transform:none}}
+
+/* ===== 25. Reçu déchiré ===== */
+.rc-clip{position:relative}
+.rc-clip::before{content:"";position:absolute;left:0;right:0;top:0;height:0;border-top:2px dashed rgba(57,46,44,.4);opacity:0;z-index:3;pointer-events:none}
+.rc-clip.is-torn::before{animation:perfFlash .8s ease forwards}
+.rc-paper.tear{animation:tearDrop .6s cubic-bezier(.34,1.56,.64,1) forwards!important}
+@keyframes perfFlash{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+@keyframes tearDrop{0%{transform:none}28%{transform:translateY(-4px) rotate(-.7deg)}58%{transform:translateY(2px) rotate(.35deg)}100%{transform:translateY(5px) rotate(.12deg)}}
+
+/* ===== 27. Grille 9x9 de succès ===== */
+.sg{grid-template-columns:repeat(9,1fr);gap:2px;width:160px;height:160px;animation:gridout .5s ease 1.95s forwards}
+.sg i{flex:none;font:700 10px Poppins,sans-serif;border:1px solid #392E2C;border-radius:3px;animation-duration:.3s}
+.sg i:nth-child(3n){border-right:2px solid #392E2C}
+.sg i:nth-child(n+19):nth-child(-n+27),.sg i:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid #392E2C}
+
+#cart-count-num{display:flex;align-items:center;justify-content:center;width:100%;height:100%;line-height:1}
+
 @media (prefers-reduced-motion:reduce){
   .tl-c{opacity:1!important;filter:none!important;transform:none!important;animation:none!important}
   .tl::before{display:none!important}
   .btn-sheen::after{display:none}
-  .bg9{display:none}
 }
 </style>
 </head>
@@ -218,7 +283,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <img id="logo" src="https://ik.imagekit.io/vexaccess/IMG_7235.JPG?updatedAt=1793621876079" alt="Logo Vex Store" role="button" tabindex="0" draggable="false" aria-label="Back to top • Retour en haut" class="h-8 w-auto absolute left-1/2 -translate-x-1/2 cursor-pointer select-none">
     <button id="cart-btn" onclick="openModal()" aria-label="Cart" class="relative p-2 text-eva-burgundy hover:bg-eva-pinkLight rounded-full transition btn-tactile">
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-      <span id="cart-count" class="absolute top-0 right-0 bg-gray-900 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center" style="transform:scale(0)">0</span>
+      <span id="cart-count" class="absolute top-0 right-0 bg-gray-900 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center overflow-hidden" style="transform:scale(0)"><span id="cart-count-num">0</span></span>
     </button>
   </div>
 </header>
@@ -240,10 +305,10 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
   </div>
   <div id="cta" class="fx-up flex flex-col gap-4" style="--d:1s">
     <div class="flex items-center justify-center gap-3 w-full">
-      <div class="flex items-center border border-gray-300 rounded-2xl bg-white px-3 h-[56px]">
-        <button type="button" onclick="updateDisplayQty(-1)" aria-label="Decrease quantity" class="text-gray-500 hover:text-black text-xl font-medium px-2 btn-tactile">&minus;</button>
+      <div id="qty-box" class="relative flex items-center border border-gray-300 rounded-2xl bg-white px-3 h-[56px]">
+        <button id="qty-minus" type="button" onclick="updateDisplayQty(-1)" aria-label="Decrease quantity" class="text-gray-500 hover:text-black text-xl font-medium px-2 btn-tactile">&minus;</button>
         <span id="display-qty" class="inline-block text-gray-900 font-medium text-lg px-3 min-w-[2.5rem] text-center">1</span>
-        <button type="button" onclick="updateDisplayQty(1)" aria-label="Increase quantity" class="text-gray-500 hover:text-black text-xl font-medium px-2 btn-tactile">+</button>
+        <button id="qty-plus" type="button" onclick="updateDisplayQty(1)" aria-label="Increase quantity" class="text-gray-500 hover:text-black text-xl font-medium px-2 btn-tactile">+</button>
       </div>
       <button onclick="addToCart(this)" class="addbtn bg-black hover:bg-gray-800 text-white rounded-2xl font-bold text-[14px] md:text-lg btn-tactile"><span class="bt-t"><svg class="w-5 h-5 shrink-0 fill-current" viewBox="0 0 24 24"><path d="M17 18c-1.11 0-2 .89-2 2s.89 2 2 2 2-.89 2-2-.89-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm6 16c-1.11 0-2 .89-2 2s.89 2 2 2 2-.89 2-2-.89-2-2-2z"/></svg><span>Add to cart • أضف إلى السلة</span></span><svg class="bt-c" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></button>
     </div>
@@ -283,7 +348,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     </div>
 
     <div id="success" class="hidden flex-col items-center text-center py-4">
-      <div class="relative w-28 h-28 mb-6 mx-auto"><div class="sg" id="sg"></div><svg class="absolute inset-0 w-full h-full" viewBox="0 0 52 52"><circle class="ck-c" cx="26" cy="26" r="24" fill="none" stroke="#22c55e" stroke-width="2"/><path class="ck-p" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 27l7 7 15-15"/></svg></div>
+      <div class="relative w-40 h-40 mb-6 mx-auto"><div class="sg" id="sg"></div><svg class="absolute inset-0 w-full h-full" viewBox="0 0 52 52"><circle class="ck-c" cx="26" cy="26" r="24" fill="none" stroke="#22c55e" stroke-width="2"/><path class="ck-p" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 27l7 7 15-15"/></svg></div>
       <h3 class="text-2xl font-bold mb-2">Order confirmed! • تم تأكيد الطلب</h3>
       <p class="text-gray-600 mb-8">Thank you for your trust! We will call you shortly to confirm your order.<span dir="rtl" class="block mt-1">شكرا لثقتكم. سنتصل بكم قريبا لتأكيد الطلب 🧩</span></p>
       <div id="rc" class="rc hidden"><div class="rc-slot"></div><div class="rc-clip"><div id="rc-paper" class="rc-paper"></div></div><button type="button" id="rc-dl" class="rc-dl" onclick="downloadReceipt()">Download receipt • تحميل الوصل</button></div>
@@ -327,7 +392,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
         <label class="delivery-option flex items-start gap-4 p-4 border border-gray-200 rounded-xl bg-gray-50" id="label-domicile">
           <input type="radio" name="delivery_type" value="express" onchange="selectDelivery('express')" class="mt-1">
           <div class="flex-1">
-            <div class="flex justify-between items-center"><span class="font-bold text-gray-900 text-sm">Home delivery • للمنزل</span><span id="home-price" class="font-bold text-sm"></span></div>
+            <div class="flex justify-between items-center"><span class="font-bold text-gray-900 text-sm">Home delivery • للمنزل</span><span id="home-price" class="inline-block font-bold text-sm"></span></div>
             <p class="text-xs text-gray-500 mt-1">Delivered to your door</p>
             <div id="domicile-container" class="hidden mt-3">
               <input type="text" id="adresse_domicile" placeholder="Your exact address (e.g. Didouche Mourad St.) • عنوانك الكامل" class="w-full p-3 text-sm bg-white border border-gray-200 rounded-xl outline-none placeholder-gray-400">
@@ -391,18 +456,31 @@ if(cart.length){const q=cart.reduce((s,i)=>s+(parseInt(i.qty)||0),0);cart=q>0?[{
 
 /* ---------- Toast ---------- */
 function showToast(msg,type='success'){
+  const bad=type!=='success';
   const t=document.createElement('div');
-  t.className='flex items-center gap-3 px-5 py-3 rounded-xl shadow-lg text-white font-medium text-sm transition-all duration-300 -translate-y-4 opacity-0 pointer-events-auto '+(type==='success'?'bg-green-500':'bg-red-500');
-  t.innerHTML='<span>'+(type==='success'?'✅':'⚠️')+'</span><span>'+esc(msg)+'</span>';
+  t.className='toast-ticket pointer-events-auto'+(bad?' bad':'');
+  t.innerHTML='<span class="tt-ico">'+(bad?'⚠️':'🧾')+'</span><span class="tt-txt">'+esc(msg)+'</span><span class="tt-bar"></span>';
   $('#toast-container').appendChild(t);
-  setTimeout(()=>t.classList.remove('-translate-y-4','opacity-0'),10);
-  setTimeout(()=>{t.classList.add('-translate-y-4','opacity-0');setTimeout(()=>t.remove(),300)},3000);
+  if(!reduce){
+    t.animate([
+      {opacity:0,transform:'translateY(-14px) scale(.96)'},
+      {opacity:1,transform:'none'}
+    ],{duration:340,easing:'cubic-bezier(.16,1,.3,1)'});
+  }
+  setTimeout(()=>{
+    if(reduce){t.remove();return}
+    t.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-12px) scale(.97)'}],{duration:300,easing:'ease-in',fill:'forwards'}).onfinish=()=>t.remove();
+  },3000);
 }
 
 /* ---------- Panier ---------- */
 function updateDisplayQty(d){
+  if(emojiPop)emojiPop(d>0?$('#qty-plus'):$('#qty-minus'),d);
   const prev=currentQty;currentQty=Math.max(1,currentQty+d);
-  if(currentQty===prev)return;
+  if(currentQty===prev){
+    if(d<0&&bumpMin)bumpMin();
+    return;
+  }
   const n=$('#display-qty');n.textContent=currentQty;
   if(reduce){retrig(n,'pop');return}
   n.animate([{transform:'translateY('+(d>0?55:-55)+'%)',opacity:0},{transform:'none',opacity:1}],{duration:280,easing:'cubic-bezier(.16,1,.3,1)'});
@@ -419,14 +497,26 @@ function updateCartUI(){
     list.appendChild(li);
   });
   if(!n)list.innerHTML='<li class="text-center text-gray-500 py-6 text-sm font-medium">Your cart is empty • السلة فارغة</li>';
-  const b=$('#cart-count'),old=b.textContent;b.textContent=n;b.style.transform=n?'scale(1)':'scale(0)';
-  if(n&&String(n)!==old)retrig(b,'bump');
+  const b=$('#cart-count');b.style.transform=n?'scale(1)':'scale(0)';
+  setCartBadge(n);
   updateSummary();
 }
 function changeItemQty(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal()}
 function removeFromCart(i,btn){
-  const row=btn.closest('li');if(row)row.classList.add('item-out');
-  setTimeout(()=>{cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal()},300);
+  const row=btn.closest('li');
+  if(!row){cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal();return}
+  if(reduce){cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal();return}
+  const r=row.getBoundingClientRect(),t=btn.getBoundingClientRect();
+  const dx=t.left+t.width/2-(r.left+r.width/2),dy=t.top+t.height/2-(r.top+r.height/2);
+  row.style.transformOrigin='50% 50%';
+  row.animate([
+    {transform:'none',opacity:1},
+    {transform:'translate('+(dx*.35)+'px,'+(dy*.35)+'px) scale(.7) rotate(-9deg)',opacity:.9,offset:.45},
+    {transform:'translate('+dx+'px,'+dy+'px) scale(.1) rotate(24deg)',opacity:0}
+  ],{duration:430,easing:'cubic-bezier(.5,0,.75,0)',fill:'forwards'}).onfinish=()=>{
+    paperBits(t.left+t.width/2,t.top+t.height/2);
+    cart.splice(i,1);save();updateCartUI();if(!cart.length)closeModal();
+  };
 }
 function flyToCart(from){
   const c=$('#cart-btn');retrig(c,'wiggle');
@@ -477,10 +567,20 @@ function updateSummary(){
   const set=(sel,txt)=>{const el=$(sel);el._v=undefined;if(el.textContent!==txt){el.textContent=txt;retrig(el,'pop')}};
   roll('#sum-sub',sub);
   const hp=$('#home-price'),hv=homeStatus==='loading'?'sk':homePrice!==null?homePrice+' DA':'';
-  if(hp.dataset.v!==hv){hp.dataset.v=hv;hp.innerHTML=hv==='sk'?'<span class="sk inline-block w-14 h-4 align-middle"></span>':hv}
-  const ship=$('#sum-ship');
+  if(hp.dataset.v!==hv){
+    const first=hp.dataset.v===undefined;
+    hp.dataset.v=hv;hp.innerHTML=hv==='sk'?'<span class="sk inline-block w-14 h-4 align-middle"></span>':hv;
+    if(!first&&!reduce&&hv!=='sk'&&hv!==''){
+      hp.animate([
+        {opacity:0,transform:'perspective(240px) rotateX(-80deg)'},
+        {opacity:1,transform:'none'}
+      ],{duration:430,easing:'cubic-bezier(.16,1,.3,1)',transformOrigin:'50% 100%'});
+    }
+  }
+  const ship=$('#sum-ship'),oldFee=ship._fee;ship._fee=f;
   if(t==='express'&&homeStatus==='loading'){if(ship.dataset.sk!=='1'){ship.dataset.sk='1';ship._v=undefined;ship.innerHTML='<span class="sk inline-block w-24 h-4 align-middle"></span>'}}
   else{delete ship.dataset.sk;f!==null?roll('#sum-ship',f):set('#sum-ship',!t?'Choose delivery • اختر التوصيل':t==='stopdesk'?'Choose an office • اختر مكتبا':homeStatus||'Choose your municipality • اختر بلديتك')}
+  if(f!==null&&oldFee!==f&&!reduce)coinFx();
   roll('#cart-total',sub+(f||0));
 }
 
@@ -537,9 +637,12 @@ function updateProgress(){
 }
 function flashMissing(){
   const els=checks().filter(x=>!x[0]).flatMap(x=>x[1]);if(!els.length)return;
-  els.forEach(el=>{el.classList.add('miss-keep');retrig(el,'miss');setTimeout(()=>el.classList.remove('miss'),1500)});
+  els.forEach(el=>{
+    scribble(el);
+    retrig(el.id==='stopdesk-list'?($('#label-stopdesk')||el):el,'shake');
+  });
   els[0].scrollIntoView({behavior:'smooth',block:'center'});
-  showToast('Complete the pink fields • أكمل الحقول الملونة','error');
+  showToast('Complete the red fields • أكمل الحقول المحددة','error');
 }
 const form=$('#checkout-form');
 const clearMiss=e=>{e.target.classList&&e.target.classList.remove('miss-keep');if(e.target.name==='delivery_type')$$('.delivery-option').forEach(l=>l.classList.remove('miss-keep'));$('#stopdesk-list').classList.remove('miss-keep');updateProgress();updateSummary()};
@@ -563,11 +666,12 @@ function loadCommunes(){
   $('#stopdesk_val').value='';cachedPricing=[];homePrice=null;homeStatus='';
   $('#stopdesk-list').innerHTML='<div class="text-sm text-gray-500 p-2 text-center">Please select a municipality • اختر البلدية</div>';
   $('#stopdesk-hint').textContent='Please select a municipality • اختر البلدية';
+  showCommuneLoad(true);
   fetch(API_BASE_URL+'/communes/'+id).then(r=>r.json()).then(d=>{
     cs.innerHTML='<option value="" disabled selected>Municipality • البلدية</option>';
     (d.data||d).forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name||c.nom;cs.appendChild(o)});
-    cs.disabled=false;retrig(cs,'pop');syncFloats();
-  }).catch(()=>{cs.innerHTML='<option value="" disabled selected>Loading error</option>';cs.disabled=false});
+    cs.disabled=false;retrig(cs,'pop');syncFloats();showCommuneLoad(false);
+  }).catch(()=>{cs.innerHTML='<option value="" disabled selected>Loading error</option>';cs.disabled=false;showCommuneLoad(false)});
 }
 function onCommuneChange(){
   const id=$('#commune').value;if(!id)return;
@@ -589,6 +693,7 @@ function selectDelivery(type){
   $('#stopdesk-container').classList.toggle('hidden',!s);$('#stopdesk-hint').classList.toggle('hidden',s);
   $('#domicile-container').classList.toggle('hidden',s);
   if(!s)$('#stopdesk_val').value='';
+  deliveryFx(type);
 }
 function populateStopdesks(){
   const box=$('#stopdesk-list'),hint=$('#stopdesk-hint'),cid=String($('#commune').value);
@@ -638,17 +743,19 @@ function submitOrder(e){
   const sel=id=>$('#'+id).selectedOptions[0].text;
   const rc={date:new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}),items:cart.map(i=>({...i})),sub:$('#sum-sub').textContent,ship:$('#sum-ship').textContent||'—',total:$('#cart-total').textContent,
     info:[['Customer',orderData.prenom+' '+orderData.nom],['Phone',orderData.telephone],['Wilaya',sel('wilaya')],['Municipality',sel('commune')],['Delivery',t==='stopdesk'?'Stopdesk':'Home delivery'],[t==='stopdesk'?'Office':'Address',t==='stopdesk'?[orderData.stopdesk.name,orderData.stopdesk.address].filter(Boolean).join(' - '):orderData.address_domicile],['Payment','Cash on delivery']]};
-  const btn=$('#submit-btn'),txt=btn.textContent;btn.textContent='Processing...';btn.disabled=true;
+  const btn=$('#submit-btn'),fx=startSubmitFx(btn);
   fetch(API_BASE_URL+'/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(orderData)})
   .then(r=>r.json()).then(d=>{
-    if(!d.success){showToast('Error: '+(d.message||'order refused'),'error');return}
+    if(!d.success){fx.restore();showToast('Error: '+(d.message||'order refused'),'error');return}
     cart=[];save();updateCartUI();
     try{localStorage.setItem(PREF,JSON.stringify({nom:orderData.nom,prenom:orderData.prenom,tel:orderData.telephone}))}catch(e){}
-    form.classList.add('hidden');$('#cart-items').classList.add('hidden');$('#fp').classList.add('hidden');
-    const s=$('#success');s.classList.remove('hidden');s.classList.add('flex');
-    $('#modal-box').scrollTop=0;startGrid();setTimeout(petalBurst,2300);setTimeout(()=>showReceipt(rc,d),3000);
-  }).catch(()=>showToast('Unable to reach the server.','error'))
-  .finally(()=>{btn.textContent=txt;btn.disabled=false});
+    fx.finish(()=>{
+      form.classList.add('hidden');$('#cart-items').classList.add('hidden');$('#fp').classList.add('hidden');
+      const s=$('#success');s.classList.remove('hidden');s.classList.add('flex');
+      $('#modal-box').scrollTop=0;startGrid();setTimeout(petalBurst,2300);setTimeout(()=>showReceipt(rc,d),3000);
+      fx.restore();
+    });
+  }).catch(()=>{fx.restore();showToast('Unable to reach the server.','error')});
 }
 
 /* ---------- Menu ---------- */
@@ -683,8 +790,19 @@ const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)en.ta
 $$('.stagger-item').forEach(i=>io.observe(i));
 /* ---------- Confirmation : grille de Sudoku + reçu ---------- */
 function startGrid(){
-  const g=$('#sg'),dg=[5,3,4,6,7,2,1,9,8],ord=[4,0,8,2,6,1,7,3,5];
-  g.innerHTML=dg.map((n,i)=>'<i style="--d:'+(0.2+ord.indexOf(i)*0.15).toFixed(2)+'s">'+n+'</i>').join('');
+  const g=$('#sg');
+  const S=[
+    5,3,4,6,7,8,9,1,2,
+    6,7,2,1,9,5,3,4,8,
+    1,9,8,3,4,2,5,6,7,
+    8,5,9,7,6,1,4,2,3,
+    4,2,6,8,5,3,7,9,1,
+    7,1,3,9,2,4,8,5,6,
+    9,6,1,5,3,7,2,8,4,
+    2,8,7,4,1,9,6,3,5,
+    3,4,5,2,8,6,1,7,9
+  ];
+  g.innerHTML=S.map((n,i)=>'<i style="--d:'+(0.08+i*0.015).toFixed(3)+'s">'+n+'</i>').join('');
   g.style.animation='none';void g.offsetWidth;g.style.animation='';
 }
 function followScroll(ms){
@@ -694,14 +812,17 @@ function followScroll(ms){
 let lastRc=null;
 function showReceipt(m,d){
   lastRc={m,d};
+  const paper=$('#rc-paper'),clip=paper.parentElement;
+  paper.classList.remove('tear');if(clip)clip.classList.remove('is-torn');
   const tr=d.tracking&&d.tracking!=='En attente'?d.tracking:'';
-  $('#rc-paper').innerHTML='<div class="rb">Vex Store 🧩</div><div class="rs">Order receipt • وصل الطلب</div><div class="rs">'+esc(m.date)+(d.orderId?' • #'+esc(d.orderId):'')+'</div><div class="rh"></div>'
+  paper.innerHTML='<div class="rb">Vex Store 🧩</div><div class="rs">Order receipt • وصل الطلب</div><div class="rs">'+esc(m.date)+(d.orderId?' • #'+esc(d.orderId):'')+'</div><div class="rh"></div>'
   +m.items.map(i=>'<div class="rr"><span><b>'+i.qty+'×</b> '+esc(i.name)+'</span><span>'+P.price*i.qty+' DA</span></div>').join('')
   +'<div class="rh"></div><div class="rr"><span>Subtotal</span><span>'+esc(m.sub)+'</span></div><div class="rr"><span>Delivery</span><span>'+esc(m.ship)+'</span></div><div class="rr rt"><span>TOTAL</span><span>'+esc(m.total)+'</span></div><div class="rh"></div>'
   +m.info.filter(r=>r[1]).map(r=>'<div class="ri"><span>'+r[0]+'</span><span>'+esc(r[1])+'</span></div>').join('')
   +(tr?'<div class="rh"></div><div class="rs">Tracking<br><b>'+esc(tr)+'</b></div>':'')
   +'<div class="rn">We will call you shortly to confirm<br>سنتصل بكم قريبا لتأكيد الطلب 🧩</div>';
   $('#rc').classList.remove('hidden');followScroll(1700);
+  setTimeout(()=>{paper.classList.add('tear');if(clip)clip.classList.add('is-torn')},1700);
 }
 /* barre collante mobile */
 const sbar=$('#sbar');$('#sbar-price').textContent=P.price+' DA';
@@ -903,31 +1024,211 @@ if(logoEl){
   logoEl.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goTop()}});
 }
 
-/* ---------- 3. Grille de sudoku qui se remplit au scroll ---------- */
-if(!reduce){
-  const bg=document.createElement('div');bg.className='bg9';bg.setAttribute('aria-hidden','true');
-  const gi=document.createElement('div');gi.className='bg9-in';
-  const cells=[];
-  for(let i=0;i<81;i++){
-    const r=Math.floor(i/9),col=i%9,d=((r*3+Math.floor(r/3)+col)%9)+1;
-    const c=document.createElement('i');c.textContent=d;gi.appendChild(c);cells.push(c);
-  }
-  bg.appendChild(gi);document.body.prepend(bg);
-  const order=Array.from({length:81},(_,i)=>i).sort(()=>Math.random()-.5);
-  let lastN=-1;
-  const paint=()=>{
-    const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
-    const p=Math.min(1,Math.max(0,scrollY/max)),n=3+Math.round(p*23);
-    if(n===lastN)return;lastN=n;
-    const set=new Set(order.slice(0,n));
-    cells.forEach((c,i)=>c.classList.toggle('on',set.has(i)));
-  };
-  let raf=false;
-  const onBgScroll=()=>{if(raf)return;raf=true;requestAnimationFrame(()=>{raf=false;paint()})};
-  addEventListener('scroll',onBgScroll,{passive:true});
-  addEventListener('resize',onBgScroll,{passive:true});
-  paint();
+/* ---------- 30. Odomètre du panier ---------- */
+function setCartBadge(n){
+  const b=$('#cart-count'),num=$('#cart-count-num');if(!b||!num)return;
+  const old=b._n===undefined?0:b._n;b._n=n;
+  b.style.transform=n?'scale(1)':'scale(0)';
+  if(n===old)return;
+  num.textContent=n;
+  if(reduce){retrig(b,'bump');return}
+  const d=n>old?1:-1;
+  num.animate([
+    {transform:'translateY('+(d>0?100:-100)+'%)',opacity:0},
+    {transform:'none',opacity:1}
+  ],{duration:280,easing:'cubic-bezier(.16,1,.3,1)'});
+  retrig(b,'bump');
 }
+
+/* ---------- 31. Ripple d'encre ---------- */
+document.addEventListener('pointerdown',e=>{
+  if(reduce)return;
+  const b=e.target.closest('button,.btn-tactile,.fx-menu-link');
+  if(!b||b.disabled)return;
+  const r=b.getBoundingClientRect();if(!r.width||!r.height)return;
+  const st=getComputedStyle(b);
+  if(st.position==='static')b.style.position='relative';
+  if(st.overflow==='visible'&&b.id!=='cart-btn')b.style.overflow='hidden';
+  const d=Math.max(r.width,r.height)*2.2;
+  const s=document.createElement('span');s.className='ink-ripple';
+  s.style.width=s.style.height=d+'px';
+  s.style.left=(e.clientX-r.left)+'px';s.style.top=(e.clientY-r.top)+'px';
+  b.appendChild(s);
+  setTimeout(()=>s.remove(),700);
+},{passive:true});
+
+/* ---------- 32. Corbeille qui froisse ---------- */
+function paperBits(x,y){
+  if(reduce)return;
+  for(let i=0;i<10;i++){
+    const s=document.createElement('span');
+    const w=3+Math.random()*4,h=3+Math.random()*4;
+    s.style.cssText='position:fixed;left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px;background:'+(i%2?'#e7e2dc':'#fff')+';border:1px solid rgba(57,46,44,.14);z-index:560;pointer-events:none;will-change:transform';
+    document.body.appendChild(s);
+    const dx=(Math.random()*2-1)*58,dy=35+Math.random()*90,rot=(Math.random()*2-1)*320;
+    s.animate([
+      {transform:'translate(-50%,-50%) rotate(0)',opacity:1},
+      {transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) rotate('+rot+'deg)',opacity:0}
+    ],{duration:640+Math.random()*320,easing:'cubic-bezier(.3,.7,.4,1)'}).onfinish=()=>s.remove();
+  }
+}
+
+/* ---------- 34. Erreur coup de crayon ---------- */
+function scribble(el){
+  if(!el)return;
+  if(el.id==='stopdesk-list')el=$('#label-stopdesk')||el;
+  const host=el.closest('.ff')||(el.tagName==='LABEL'?el:el.parentElement)||el;
+  if(getComputedStyle(host).position==='static')host.style.position='relative';
+  host.querySelectorAll('.scribble').forEach(s=>s.remove());
+  if(reduce)return;
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('class','scribble');svg.setAttribute('viewBox','0 0 100 8');svg.setAttribute('preserveAspectRatio','none');svg.setAttribute('aria-hidden','true');
+  const p=document.createElementNS(ns,'path');
+  p.setAttribute('d','M1 5c6-4 10 3 16-1s10 4 16-1 10 4 16-1 10 4 16-1 10 4 16-1 10 4 16-1');
+  svg.appendChild(p);host.appendChild(svg);
+  const len=(p.getTotalLength&&p.getTotalLength())||100;
+  p.style.strokeDasharray=len;p.style.strokeDashoffset=len;
+  p.animate([{strokeDashoffset:len},{strokeDashoffset:0}],{duration:380,easing:'cubic-bezier(.65,0,.45,1)',fill:'forwards'});
+  setTimeout(()=>{
+    p.animate([{opacity:1},{opacity:0}],{duration:400,fill:'forwards'}).onfinish=()=>svg.remove();
+  },1200);
+}
+
+/* ---------- 35. Minimum 1 ---------- */
+let minTO;
+function bumpMin(){
+  const box=$('#qty-box');if(!box)return;
+  let b=box.querySelector('.qty-bubble');
+  if(!b){b=document.createElement('span');b.className='qty-bubble';b.textContent='Minimum 1 • 1 على الأقل';box.appendChild(b)}
+  b.classList.add('on');
+  clearTimeout(minTO);
+  minTO=setTimeout(()=>b.classList.remove('on'),1400);
+  retrig($('#qty-minus'),'shake');
+}
+
+/* ---------- Emojis + / − ---------- */
+function emojiPop(btn,d){
+  if(reduce||!btn)return;
+  const em=d>0?['🧩','✨','🔢','💡','➕']:['🧩','✨','🔢','💫','➖'];
+  const r=btn.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+  for(let i=0;i<4;i++){
+    const s=document.createElement('span');s.textContent=em[i%em.length];
+    s.style.cssText='position:fixed;left:'+cx+'px;top:'+cy+'px;font-size:'+(12+Math.random()*8)+'px;z-index:520;pointer-events:none;will-change:transform';
+    document.body.appendChild(s);
+    const dx=(Math.random()*2-1)*32,dy=-(26+Math.random()*28);
+    s.animate([
+      {transform:'translate(-50%,-50%) scale(.4)',opacity:1},
+      {transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) scale(1)',opacity:1,offset:.55},
+      {transform:'translate(calc(-50% + '+(dx*1.5)+'px),calc(-50% + '+(dy-22)+'px)) scale(.5)',opacity:0}
+    ],{duration:700+Math.random()*250,delay:i*40,easing:'cubic-bezier(.2,.7,.3,1)',fill:'backwards'}).onfinish=()=>s.remove();
+  }
+}
+
+/* ---------- 36. Livraison illustrée ---------- */
+function deliveryFx(type){
+  if(reduce)return;
+  const host=type==='stopdesk'?$('#label-stopdesk'):$('#label-domicile');
+  if(!host||host.getBoundingClientRect().width===0)return;
+  const r=host.getBoundingClientRect();
+  const s=document.createElement('span');s.textContent=type==='stopdesk'?'📍':'🛵';
+  s.style.cssText='position:fixed;left:'+(r.left+26)+'px;top:'+(r.top+r.height/2)+'px;font-size:22px;z-index:530;pointer-events:none;will-change:transform';
+  document.body.appendChild(s);
+  if(type==='stopdesk'){
+    s.animate([
+      {transform:'translate(-50%,-50%) translateY(-40px) scale(.3)',opacity:0},
+      {transform:'translate(-50%,-50%) translateY(-16px) scale(1.12)',opacity:1,offset:.55},
+      {transform:'translate(-50%,-50%) translateY(0) scale(1)',opacity:1}
+    ],{duration:620,easing:'cubic-bezier(.34,1.56,.64,1)'}).onfinish=()=>{
+      setTimeout(()=>{
+        s.animate([{opacity:1,transform:'translate(-50%,-50%) scale(1)'},{opacity:0,transform:'translate(-50%,-50%) scale(.55)'}],{duration:280,fill:'forwards'}).onfinish=()=>s.remove();
+      },480);
+    };
+  }else{
+    s.animate([
+      {transform:'translate(-50%,-50%) translateX(-48px) scale(.7)',opacity:0},
+      {transform:'translate(-50%,-50%) translateX(0) scale(1)',opacity:1,offset:.28},
+      {transform:'translate(-50%,-50%) translateX(52px) scale(1)',opacity:1,offset:.8},
+      {transform:'translate(-50%,-50%) translateX(80px) scale(.65)',opacity:0}
+    ],{duration:1000,easing:'cubic-bezier(.3,.7,.4,1)'}).onfinish=()=>s.remove();
+  }
+}
+
+/* ---------- 37. Squelette sudoku des communes ---------- */
+function showCommuneLoad(on){
+  const cs=$('#commune');if(!cs)return;
+  const host=cs.closest('.ff')||cs.parentElement;
+  const old=host.querySelector('.mini-grid');
+  if(on){
+    if(old)return;
+    const g=document.createElement('span');g.className='mini-grid';g.setAttribute('aria-hidden','true');
+    g.innerHTML='<i></i>'.repeat(9);host.appendChild(g);
+  }else if(old)old.remove();
+}
+
+/* ---------- 38. Anneau de progression du bouton ---------- */
+function startSubmitFx(btn){
+  btn._orig=btn.innerHTML;
+  btn.disabled=true;
+  btn.classList.remove('ready');
+  const restore=()=>{
+    btn.classList.remove('sub-ok');
+    btn.innerHTML=btn._orig;
+    btn.disabled=false;
+  };
+  if(reduce){
+    btn.textContent='Processing...';
+    return {finish:cb=>{restore();cb&&cb()},restore};
+  }
+  btn.innerHTML='<span class="sub-fx"><svg class="sub-ring" viewBox="0 0 36 36" aria-hidden="true"><circle class="sub-track" cx="18" cy="18" r="15"></circle><circle class="sub-bar" cx="18" cy="18" r="15"></circle></svg><span class="sub-pct">0%</span></span>';
+  const bar=btn.querySelector('.sub-bar'),pct=btn.querySelector('.sub-pct');
+  let p=0,timer;
+  const set=v=>{p=v;bar.style.strokeDashoffset=String(94.25*(1-v/100));pct.textContent=Math.round(v)+'%'};
+  set(0);
+  timer=setInterval(()=>{p=Math.min(90,p+Math.random()*8);set(p)},170);
+  return {
+    finish(cb){
+      clearInterval(timer);set(100);
+      setTimeout(()=>{
+        btn.classList.add('sub-ok');
+        btn.innerHTML='<span class="sub-fx"><svg class="sub-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>Confirmed • تم</span></span>';
+        setTimeout(()=>{restore();cb&&cb()},430);
+      },300);
+    },
+    restore(){clearInterval(timer);restore()}
+  };
+}
+
+/* ---------- 39. Pièce DA qui tourne ---------- */
+function coinFx(){
+  if(reduce)return;
+  let host=$('#home-price'),r=host&&host.getBoundingClientRect();
+  if(!r||!r.width){host=$('#sum-ship');r=host&&host.getBoundingClientRect()}
+  if(!r||!r.width)return;
+  const c=document.createElement('span');c.className='da-coin';c.textContent='DA';
+  c.setAttribute('aria-hidden','true');
+  c.style.left=(r.right-14)+'px';c.style.top=(r.top+r.height/2-13)+'px';
+  document.body.appendChild(c);
+  c.animate([
+    {transform:'translateY(0) rotateY(0) scale(.7)',opacity:0},
+    {transform:'translateY(-12px) rotateY(180deg) scale(1)',opacity:1,offset:.4},
+    {transform:'translateY(-20px) rotateY(360deg) scale(1)',opacity:1,offset:.72},
+    {transform:'translateY(-30px) rotateY(540deg) scale(.45)',opacity:0}
+  ],{duration:900,easing:'cubic-bezier(.3,.7,.4,1)'}).onfinish=()=>c.remove();
+}
+
+/* ---------- 43. Loader première visite ---------- */
+(function firstVisitLoader(){
+  if(reduce)return;
+  let seen=false;try{seen=sessionStorage.getItem('vex_seen')==='1'}catch(e){}
+  if(seen)return;
+  try{sessionStorage.setItem('vex_seen','1')}catch(e){}
+  const ld=document.createElement('div');ld.className='vex-loader';ld.setAttribute('aria-hidden','true');
+  const g=document.createElement('div');g.className='vl-grid';
+  [5,3,4,6,7,8,9,1,2].forEach((n,i)=>{const c=document.createElement('i');c.style.setProperty('--i',i);c.textContent=n;g.appendChild(c)});
+  ld.appendChild(g);document.body.appendChild(ld);
+  setTimeout(()=>{ld.classList.add('out');setTimeout(()=>ld.remove(),650)},1500);
+})();
 
 loadPrefill();
 updateCartUI();
